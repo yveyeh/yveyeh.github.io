@@ -1,3 +1,3 @@
-## [Yufenyuy Veyeh Didier Resume](https://yveyeh.github.io)
+## [Yufenyuy Veyeh Didier - Resume](https://yveyeh.github.io)
 
 This is my online resume...
