@@ -1,0 +1,7 @@
+cd User-agent: *
+Crawl-delay: 30
+Disallow: /assets/
+Disallow: /resume/assets/
+Disallow: /relax/assets/
+
+Sitemap: https://yveyeh.github.io/sitemap.xml
