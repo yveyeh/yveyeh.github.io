@@ -25,7 +25,7 @@ h5,
 h6 {
   font-family: 'Saira Extra Condensed', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   font-weight: 700;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #343a40;
 }
 
@@ -48,10 +48,14 @@ p.lead {
 }
 
 .subheading {
-  text-transform: uppercase;
+  text-transform: capitalize;
   font-weight: 500;
   font-family: 'Saira Extra Condensed', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   font-size: 1.5rem;
+}
+
+.subheading a {
+  text-transform: none;
 }
 
 .social-icons a {
@@ -81,6 +85,10 @@ p.lead {
 
 .dev-icons .list-inline-item i:hover {
   color: #BD5D38;
+}
+
+#name {
+  text-transform: capitalize !important;
 }
 
 #sideNav .navbar-nav .nav-item .nav-link {
