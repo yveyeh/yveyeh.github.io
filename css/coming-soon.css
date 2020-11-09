@@ -206,3 +206,10 @@ video {
 .input {
   font-weight: 300 !important;
 }
+
+.badge-didi {
+  background-color: #cd9557 !important;
+  border-color: #cd9557 !important;
+  /* border-radius: 3px; */
+  color: #fff !important;
+}
