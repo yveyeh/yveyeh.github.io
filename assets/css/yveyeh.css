@@ -2,7 +2,7 @@
 * @author Yufenyuy Veyeh Didier <https://yveyeh.github.io>
 * @copyright © 2021. Tenshnova (https://www.tenshnova.com)
 * @license - See the link (https://github.com/yveyeh/yveyeh.github.io/blob/master/LICENSE)
-* @version 2.0
+* @version 2.1
 */
 
 html {
@@ -155,10 +155,10 @@ video {
     color: white;
     background-color: rgba(0, 46, 102, 0.8);
     border-radius: 100%;
-    font-size: 2rem;
-    line-height: 4rem;
-    height: 4rem;
-    width: 4rem;
+    font-size: 1.25rem;
+    line-height: 3rem;
+    height: 3rem;
+    width: 3rem;
 }
 
 .social-icons ul > li > a:hover {
@@ -188,10 +188,10 @@ video {
     }
     .social-icons ul > li > a {
         transition: all 0.2s ease-in-out;
-        font-size: 2rem;
-        line-height: 4rem;
-        height: 4rem;
-        width: 4rem;
+        font-size: 1.25rem;
+        line-height: 3rem;
+        height: 3rem;
+        width: 3rem;
     }
     .social-icons ul > li > a:hover {
         background-color: #002E66;

@@ -11,4 +11,4 @@ All notable changes to this project will be documented in this file.
 
 ---
 > - [v1.0](https://github.com/yveyeh/yveyeh.github.io/commit/346ef55bb5f84889749d936d939395ad64435f99) - 21/12/2020.
-> - [v2.0](#) - 21/05/2021.
+> - [v2.0](https://github.com/yveyeh/yveyeh.github.io/commit/547139d7bfb284d49351340613293c7dd579a785) - 21/05/2021.

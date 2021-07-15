@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>SacsiN - Login</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap Icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core CSS [includes Bootstrap]-->
+    <link href="assets/css/sacsin-style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 navbar-shrink" id="mainNav">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="./">
+                <img src="assets/img/logo/sacsin_logo" alt="SacsiN" width="100">
+            </a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav mx-auto my-2 my-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="#">Menu 1</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Menu 2</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Menu 3</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
+                </ul>
+                <div class="nav-extra-icons">
+                    <i class="bi-search"></i>
+                    <i class="bi-person-circle text-warning" onclick="location.href='./login.html'"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Login -->
+    <section class="page-section bg-light mt-5">
+        <div class="container px-4 px-lg-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-8">
+                    <div class="wrap d-md-flex">
+                        <div class="img" style="background-image: url('assets/img/bg_login_form.jpg');"></div>
+                        <div class="login-wrap p-4 p-md-5">
+                            <div class="d-flex">
+                                <div>
+                                    <h3 class="mb-2">Login</h3>
+                                    <p class="text-secondary mb-0">Don't have an account?</p>
+                                    <a class="text-warning" href="">Create an account</a>
+                                </div>
+                            </div>
+                            <form action="#" class="login-form">
+                                <div class="form-group my-4">
+                                    <label class="label" for="name">Email Address</label>
+                                    <input type="email" class="form-control" placeholder="Enter Email Address" required>
+                                </div>
+                                <div class="form-group mt-4 mb-1">
+                                    <p class="label mb-0" for="password">
+                                        Password
+                                        <span class="pull-end"><a href="#">Forgot Password?</a></span>
+                                    </p>
+                                    <input type="password" class="form-control" placeholder="Enter Password" required>
+                                </div>
+                                <div class="form-group d-md-flex">
+                                    <div class="w-50 text-left">
+                                        <label class="checkbox-wrap checkbox-primary mb-0">
+                                            <input type="checkbox" checked="">
+                                            <span class="checkmark"></span>
+                                            Remember Me
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group mt-4">
+                                    <button type="submit" class="form-control btn btn-warning rounded submit px-3">
+                                        Login
+                                    </button>
+                                </div>
+                            </form>
+                            <p class="text-secondary">Or you can join with</p>
+                            <div class="social-auth">
+                                <a href="#" class="btn btn-google"></a>
+                                <a href="#" class="btn btn-facebook"></a>
+                                <a href="#" class="btn btn-twitter"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer-->
+    <footer class="bg-dark py-5">
+        <div class="container my-3">
+            <div class="row gx-4 gx-lg-5">
+                <div class="col-lg-6 col-md-6">
+                    <div id="footer-logo" class="mb-4">
+                        <img src="assets/img/logo/sacsin_logo" alt="SacsiN" width="100">
+                    </div>
+                    <div id="footer-description">
+                        <p class="text-white">
+                            A digitalised methodology to feed and exchange information between existing systems.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 mt-5">
+                    <div id="footer-menu">
+                        <ul>
+                            <li><a href="#" class="text-white">Menu 1</a></li>
+                            <li><a href="#" class="text-white">Menu 2</a></li>
+                            <li><a href="#" class="text-white">Menu 3</a></li>
+                            <li><a href="#" class="text-white">FAQ</a></li>
+                            <li><a href="#" class="text-white">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div id="copyright" class="text-warning">
+                        <script>
+                            document.write(`&copy; ${new Date().getFullYear()}, Design By HOP`)
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <!-- <script src="assets/js/sacsin-script.js"></script> -->
+</body>
+
+</html>
