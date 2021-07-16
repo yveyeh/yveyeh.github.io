@@ -10624,13 +10624,13 @@ header.masthead .h1 {
     background-size: cover;
 }
 
-#sacsin-project .col-lg-7,
+/* #sacsin-project .col-lg-7,
 #sacsin-project .col-md-7 {
     background-image: url('../img/bg_sacsin_project.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     transform: scale(1.075);
-}
+} */
 
 #project-members img {
     opacity: 0.25;
