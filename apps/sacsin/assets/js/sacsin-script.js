@@ -8,15 +8,18 @@ window.addEventListener('DOMContentLoaded', event => {
     var navbarShrink = function () {
         const navbarCollapsible = document.body.querySelector('#mainNav');
         const searchIcon = document.body.querySelector('.nav-extra-icons .bi-search')
+        const navbarLogo = document.querySelector('.navbar-logo')
         if (!navbarCollapsible) {
             return;
         }
         if (window.scrollY === 0) {
             navbarCollapsible.classList.remove('navbar-shrink')
             searchIcon.classList.add('text-white')
+            navbarLogo.setAttribute('src', 'assets/img/logo/sacsin_logo_light.png')
         } else {
             navbarCollapsible.classList.add('navbar-shrink')
             searchIcon.classList.remove('text-white')
+            navbarLogo.setAttribute('src', 'assets/img/logo/sacsin_logo_dark.png')
         }
 
     };
