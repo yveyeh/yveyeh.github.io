@@ -103,7 +103,7 @@ a:focus {
 
 #sidebar ul li.active>a,
 a[aria-expanded="true"] {
-    color: #fff;
+    color: #6d7fcc;
     /* background: #6d7fcc; */
 }
 
@@ -226,6 +226,7 @@ a.article:hover {
 .card-actions span > .fa-search {
     font-size: large;
     margin-right: 1rem;
+    cursor: pointer;
     color: #b5b5b5 !important;
 }
 
@@ -239,7 +240,7 @@ a.article:hover {
 }
 
 .table tbody tr:hover {
-    background-color: #f3f3f3;
+    background-color: #f4f8fc;
 }
 
 /* Custom Buttons */
@@ -257,6 +258,10 @@ a.article:hover {
     background-color: #b4d5f0;
 }
 
+.btn-disabled {
+    cursor: not-allowed !important;
+}
+
 /*  Side Pane */
 .side-pane {
     background: #f3f3f3;
@@ -266,9 +271,17 @@ a.article:hover {
     position: fixed;
     top: 0; 
     right: 0;
-    /* overflow-y: scroll; */
+    overflow-y: scroll;
     transition-duration: 600ms;
     -webkit-transition-duration: 600ms;
+    /* Hide scrollbar for IE, Edge and Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.side-pane::-webkit-scrollbar {
+    display: none;
 }
 
 .side-pane.loading,
@@ -302,7 +315,7 @@ a.article:hover {
     position: fixed;
     top: 0; 
     right: 0;
-    /* overflow-y: scroll; */
+    overflow-y: scroll;
     transition-duration: 600ms;
     -webkit-transition-duration: 600ms;
 }
@@ -320,9 +333,56 @@ a.article:hover {
 }
 
 .text-details {
-    color: #bbb;
+    color: #bbb !important;
+}
+
+.text-icons {
+    cursor: pointer;
+    color: #b5b5b5 !important;
+}
+
+.cursor-pointer {
+    cursor: pointer !important;
+}
+
+.cursor-pointer:hover {
+    opacity: 0.75;
 }
 
 .no-shadow {
     box-shadow: none !important;
+}
+
+.float-right {
+    float: right !important;
+}
+
+.float-left {
+    float: left !important;
+}
+
+tr.border-0 th {
+    cursor: pointer;
+    border-bottom: none !important;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+tr.border-0 th.active {
+    border-bottom: 3px solid#7386D5 !important;
+}
+
+tr.border-0 th span {
+    font-weight: 600;
+}
+
+.badge {
+    padding: 0.25em;
+    font-size: 50%;
+    line-height: 0.25;
+    vertical-align: middle;
+}
+
+#test-report {
+    display: none;
 }
