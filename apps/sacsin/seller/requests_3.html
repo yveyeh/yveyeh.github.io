@@ -6,12 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>SacsiN | Buyer</title>
+    <title>SacsiN | Seller</title>
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="../assets/css/sacsin-admin-style.css">
+    <!-- Scrollbar CSS -->
+    <link rel="stylesheet" href="../assets/css/sacsin-scrollbar-style.css">
 
     <!-- Font Awesome JS -->
     <script defer src="../assets/fontawesome-free-5.15.3-web/js/all.min.js"></script>
@@ -34,26 +36,12 @@
                 </li>
                 <li class="active">
                     <a href="#" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <span class="mx-3"><i class="fas fa-box"></i></span> Request Package
+                        <span class="mx-3"><i class="fas fa-comments"></i></span> Requests
                     </a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
-                        <li>
-                            <a href="product.html">Product</a>
-                        </li>
-                        <li>
-                            <a href="product.html">Object</a>
-                        </li>
-                        <li class="current">
-                            <a href="request-sentence.html">Request Sentence</a>
-                        </li>
-                        <li>
-                            <a href="expected-response.html">Expected Response</a>
-                        </li>
-                    </ul>
                 </li>
                 <li>
                     <a href="#">
-                        <span class="mx-3"><i class="fas fa-comments"></i></span> Settings
+                        <span class="mx-3"><i class="fas fa-cogs"></i></span> Settings
                     </a>
                 </li>
             </ul>
@@ -77,7 +65,7 @@
                     <div class="profile">
                         <span class="mr-4 notification"><i class="fa fa-bell"></i></span>
                         <span class="mr-1 username">John Doe</span>
-                        <img src="assets/img/pp_default.jpg" alt="pp" style="border-radius: 50%;" width="35px">
+                        <img src="../assets/img/pp_default.jpg" alt="pp" style="border-radius: 50%;" width="35px">
                     </div>
 
                 </div>
@@ -85,74 +73,110 @@
 
             <div class="p-5 pt-4">
 
-                <h2 class="mb-5">Request Sentences</h2>
+                <h2 class="mb-5">
+                    Request Package No: SS-12345678
+                    <span class="float-right">
+                        <button class="btn btn-primary px-5 py-2">
+                            <i class="fas fa-share"></i>
+                            Forward
+                        </button>
+                    </span>
+                </h2>
+
+                <div class="card shadow-sm border-0 mb-4">
+                    <div class="card-body p-0 pt-4">
+                        <div class="row text-center" style="padding: 0.5rem 5rem;">
+                            <div class="col-sm-4"><h4>General</h4></div>
+                            <div class="col-sm-4"><h4>Requestor</h4></div>
+                            <div class="col-sm-4"><h4>Responder</h4></div>
+                        </div>
+                        <hr class="mt-0">
+                        <div class="row text-center" style="padding: 0.5rem 5rem;">
+                            <div class="col-sm-4">
+                                <h5>Product/Object</h5>
+                                <p>FX3584 M6x50</p>
+                                <!-- <br> -->
+                                <h5>Request date</h5>
+                                <p>2021/06/30</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <h5>Company name</h5>
+                                <p>
+                                    <span class="badge badge-primary rounded-circle">
+                                        <i class="fas fa-check"></i>
+                                    </span>
+                                    Grand Berge Carpentry
+                                </p>
+                                <!-- <br> -->
+                                <h5>Requestor ID</h5>
+                                <p>SS-12342985</p>
+                            </div>
+                            <div class="col-sm-4">
+                                <h5>Company name</h5>
+                                <p>Fittings Ltd</p>
+                                <!-- <br> -->
+                                <h5>Responder ID</h5>
+                                <p>SS-12346685</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="card shadow-sm border-0 mb-4">
                     <div class="card-body">
                         <h4 class="card-title">
                             Migration from material
-                            <span class="card-actions">
-                                <span><i class="fa fa-trash"></i></span>
-                                <span><i class="fa fa-search"></i></span>
-                                <span><button class="btn btn-primary-light" data-display="#migration">New</button></span>
-                            </span>
                         </h4>
                         <div class="table-responsive mt-5">
                             <table class="table table-hover mt-3">
                                 <thead>
                                     <tr>
                                         <th scope="col">
-                                            <input type="checkbox" name="" id="">
+                                            <input type="checkbox" name="">
                                         </th>
                                         <th scope="col">Element</th>
                                         <th scope="col">Standard for Test</th>
-                                        <th scope="col">Expected Response</th>
-                                        <th scope="col">Last Edited</th>
+                                        <th scope="col">Maximum Limit</th>
+                                        <th scope="col">Unit</th>
+                                        <th scope="col">Status</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
+                                    <tr data-display="#response">
                                         <th scope="row">
-                                            <input type="checkbox" name="" id="">
+                                            <input type="checkbox" name="">
                                         </th>
                                         <td class="text-primary">Cadmium</td>
-                                        <td>EN71-3:2019</td>
+                                        <td>EN 71-3:2019</td>
+                                        <td>100</td>
+                                        <td>Cd/Kg</td>
                                         <td>
-                                            <button class="alert alert-success" role="alert" style="border-radius: 25px;">
-                                                Response name 1
-                                            </button>
-                                            <br>
-                                            <button class="alert alert-warning" role="alert" style="border-radius: 25px;">
-                                                Response name 7
-                                            </button>
+                                            <button class="alert alert-danger p-2 px-5" role="alert" style="border-radius: 25px;">Empty</button>
                                         </td>
-                                        <td>2 mins</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">
-                                            <input type="checkbox" name="" id="">
+                                            <input type="checkbox" name="">
                                         </th>
                                         <td class="text-primary">Lead</td>
-                                        <td>EN71-4:2020</td>
+                                        <td>ISO 71-4:2020</td>
+                                        <td>80</td>
+                                        <td>Pb/Kg</td>
                                         <td>
-                                            <button class="alert alert-success" role="alert" style="border-radius: 25px;">
-                                                Response name 2
-                                            </button>
+                                            <button class="alert alert-danger p-2 px-5" role="alert" style="border-radius: 25px;">Empty</button>
                                         </td>
-                                        <td>30 mins</td>
                                     </tr>
                                     <tr>
                                         <th scope="row">
-                                            <input type="checkbox" name="" id="">
+                                            <input type="checkbox" name="">
                                         </th>
                                         <td class="text-primary">Copper</td>
-                                        <td>EN65-3:2019</td>
+                                        <td>EN 65-3:2019</td>
+                                        <td>50</td>
+                                        <td>Cu/Kg</td>
                                         <td>
-                                            <button class="alert alert-success" role="alert" style="border-radius: 25px;">
-                                                Response name 3
-                                            </button>
+                                            <button class="alert alert-danger p-2 px-5" role="alert" style="border-radius: 25px;">Empty</button>
                                         </td>
-                                        <td>2 hrs</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -164,36 +188,33 @@
                     <div class="card-body">
                         <h4 class="card-title">
                             Content in material
-                            <span class="card-actions">
-                                <span><i class="fa fa-trash"></i></span>
-                                <span><i class="fa fa-search"></i></span>
-                                <span><button class="btn btn-primary-light" data-display="#content-in-migration">New</button></span>
-                            </span>
                         </h4>
                         <div class="table-responsive mt-5">
                             <table class="table table-hover mt-3">
                                 <thead>
                                     <tr>
                                         <th scope="col">
-                                            <input type="checkbox" name="" id="">
+                                            <input type="checkbox" name="">
                                         </th>
                                         <th scope="col">Element</th>
                                         <th scope="col">Maximum Limit</th>
                                         <th scope="col">Unit</th>
-                                        <th scope="col">Last Edited</th>
+                                        <th scope="col">Status</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
                                         <th scope="row">
-                                            <input type="checkbox" name="" id="">
+                                            <input type="checkbox" name="">
                                         </th>
                                         <td class="text-primary">Magnesium</td>
                                         <td>100</td>
                                         <td>
                                             Mg/Kg
                                         </td>
-                                        <td>5 mins</td>
+                                        <td>
+                                            <button class="alert alert-danger p-2 px-5" role="alert" style="border-radius: 25px;">Empty</button>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -204,38 +225,39 @@
                 <div class="card shadow-sm border-0 mb-5">
                     <div class="card-body">
                         <h4 class="card-title">
-                            Substance released from production
-                            <span class="card-actions">
-                                <span><i class="fa fa-trash"></i></span>
-                                <span><i class="fa fa-search"></i></span>
-                                <span>
-                                    <button type="button" class="btn btn-primary-light" data-display="#subs-rel">New</button>
-                                </span>
-                            </span>
+                            Substance Released from production
                         </h4>
                         <div class="table-responsive mt-5">
                             <table class="table table-hover mt-3">
                                 <thead>
                                     <tr>
                                         <th scope="col">
-                                            <input type="checkbox" name="" id="">
+                                            <input type="checkbox" name="">
                                         </th>
                                         <th scope="col">Substance</th>
-                                        <th scope="col">Last Edited</th>
+                                        <th scope="col">Status</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
                                         <th scope="row">
-                                            <input type="checkbox" name="" id="">
+                                            <input type="checkbox" name="">
                                         </th>
                                         <td class="text-primary">Carbondioxide</td>
-                                        <td>5 mins</td>
+                                        <td>
+                                            <button class="alert alert-danger p-2 px-5" role="alert" style="border-radius: 25px;">Empty</button>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
+                </div>
+
+                <div class="text-right">
+                    <button type="button" class="btn btn-primary px-5 py-2">
+                        <i class="fas fa-share"></i> Forward Selection
+                    </button>
                 </div>
 
             </div>
@@ -244,13 +266,13 @@
     </div>
 
     <!-- Side Pane -->
-    <div class="side-pane-backdrop" id="subs-rel">
+    <div class="side-pane-backdrop" id="response">
         <div class="side-pane loading">
             <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
-                    <h5 class="mt-2">Substance released from production</h5>
+                    <h5 class="mt-2">Response</h5>
                     <div>
-                        <button type="button" class="btn btn-light">Cancel</button>
+                        <button type="button" class="btn btn-light close-side-pane">Cancel</button>
                         <button type="button" class="btn btn-primary">Save</button>
                     </div>
                 </div>
@@ -259,14 +281,41 @@
                 <div class="card shadow-sm border-0 m-5">
                     <div class="card-body">
                         <h5 class="card-title">
-                            Select Substance
+                            Confirmed continuous production below limit
                         </h5>
                         <!-- <hr> -->
                         <form action="#" class="my-4">
-                            <select class="form-control" name="" id="">
-                                <option value="">Carbon dioxide</option>
-                                <option value="">Carbon monoxide</option>
+                            <select class="form-control" name="" id="confirm-response">
+                                <option value="no">No</option>
+                                <option value="yes">Yes</option>
                             </select>
+                        </form>
+                    </div>
+                </div>
+                <div class="card shadow-sm border-0 m-5" id="test-report">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Test Report
+                        </h5>
+                        <form action="#" class="my-4">
+                            <div class="border rounded my-3 p-3" id="test-report-1" data-display="#select-test-report" data-input="">
+                                Test Report Name 1
+                                <span class="float-right">
+                                    <i class="fas fa-pen text-icons"></i>
+                                </span>
+                            </div>
+                            <div class="border rounded my-3 p-3" id="test-report-2" data-display="#select-test-report" data-input="">
+                                Test Report Name 2
+                                <span class="float-right">
+                                    <i class="fas fa-pen text-icons"></i>
+                                </span>
+                            </div>
+                            <div class="border rounded my-3 p-3" id="test-report-3" data-display="#select-test-report" data-input="">
+                                Test Report Name 3
+                                <span class="float-right">
+                                    <i class="fas fa-pen text-icons"></i>
+                                </span>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -274,7 +323,7 @@
         </div>
     </div>
 
-    <div class="side-pane-backdrop" id="migration">
+    <!-- <div class="side-pane-backdrop" id="migration">
         <div class="side-pane loading">
             <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
@@ -299,7 +348,7 @@
                                 <div class="col-md-6">
                                     <div class="mb-4">
                                         <label for="">Element</label>
-                                        <select class="form-control" name="" id="">
+                                        <select class="form-control" name="">
                                             <option value="">Sodium</option>
                                             <option value="">Carbon</option>
                                             <option value="">Chlorine</option>
@@ -308,7 +357,7 @@
                                     </div>
                                     <div>
                                         <label for="" class="text-white">Limit</label>
-                                        <select class="form-control" name="" id="">
+                                        <select class="form-control" name="">
                                             <option value="">Limit 0</option>
                                             <option value="">Limit 1</option>
                                             <option value="">Limit 2</option>
@@ -318,7 +367,7 @@
                                 <div class="col-md-6">
                                     <div class="mb-4">
                                         <label for="">Standard for test method</label>
-                                        <select class="form-control" name="" id="">
+                                        <select class="form-control" name="">
                                             <option value="">Test Method Standard 0</option>
                                             <option value="">Test Method Standard 1</option>
                                             <option value="">Test Method Standard 2</option>
@@ -326,7 +375,7 @@
                                     </div>
                                     <div>
                                         <label for="">Unit of measure</label>
-                                        <select class="form-control" name="" id="">
+                                        <select class="form-control" name="">
                                             <option value="">Kilograms</option>
                                             <option value="">Square meters</option>
                                             <option value="">Cubic meters</option>
@@ -382,7 +431,7 @@
                                 <div class="col-md-12">
                                     <div class="mb-4">
                                         <label for="">Element</label>
-                                        <select class="form-control" name="" id="">
+                                        <select class="form-control" name="">
                                             <option value="">Sodium</option>
                                             <option value="">Carbon</option>
                                             <option value="">Chlorine</option>
@@ -393,7 +442,7 @@
                                 <div class="col-md-6">
                                     <div class="mb-4">
                                         <label for="">Maximum limit</label>
-                                        <select class="form-control" name="" id="">
+                                        <select class="form-control" name="">
                                             <option value="">Limit 0</option>
                                             <option value="">Limit 1</option>
                                             <option value="">Limit 2</option>
@@ -403,7 +452,7 @@
                                 <div class="col-md-6">
                                     <div class="mb-4">
                                         <label for="">Unit of measure</label>
-                                        <select class="form-control" name="" id="">
+                                        <select class="form-control" name="">
                                             <option value="">Kilograms</option>
                                             <option value="">Square meters</option>
                                             <option value="">Cubic meters</option>
@@ -416,71 +465,59 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
         <!-- Sub Side Pane -->
-        <div class="side-select-pane-backdrop" id="subs">
+        <div class="side-select-pane-backdrop" id="select-test-report">
             <div class="side-select-pane loading">
                 <nav class="navbar bg-light no-shadow">
                     <div class="container-fluid">
                         <h5 class="mt-2">
-                            <span class="mr-3">
+                            <span class="close-sub-side-pane mr-3">
                                 <i class="fas fa-times"></i>
                             </span>
-                            Select Expected Response
+                            <span id="tr-title"><!-- Title is injected here --></span>
                         </h5>
-                        <div>
-                            <span>
-                                <i class="fas fa-search"></i>
-                            </span>
-                        </div>
                     </div>
                 </nav>
                 <div class="side-select-pane-wrapper">
-                    <form id="">
-                        <div class="scrollable">
-                            <div class="row ml-0">
-                                <div class="col-sm-1">
-                                    <input type="checkbox" id="">
-                                </div>
-                                <div class="col-sm-9">
-                                    Response Name 1 <br>
-                                    <span class="text-details">
-                                        EN:123456, Doc ID, Doc Issuer, Result
-                                    </span>
+                    <div class="border rounded mx-5 mb-3 p-3">
+                        <form id="tr-form">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group ml-0">
+                                        <label for="tr-doc-id">Document ID</label>
+                                        <input type="text" class="form-control" id="tr-doc-id">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="row ml-0">
-                                <div class="col-sm-1">
-                                    <input type="checkbox" id="">
+                            <div class="row mt-3">
+                                <div class="col-sm-6">
+                                    <div class="form-group ml-0">
+                                        <label for="tr-doc-is">Document Issuer</label>
+                                        <input type="text" class="form-control" id="tr-doc-is">
+                                        <small class="text-details">Accredited laboratory</small>
+                                    </div>
                                 </div>
-                                <div class="col-sm-9">
-                                    Response Name 2 <br>
-                                    <span class="text-details">
-                                        EN:123456, Doc ID, Result
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="row ml-0">
-                                <div class="col-sm-1">
-                                    <input type="checkbox" id="">
-                                </div>
-                                <div class="col-sm-9">
-                                    Response Name 3 <br>
-                                    <span class="text-details">
-                                        EN:123456, Doc ID, Expiry Date
-                                    </span>
+                                <div class="col-sm-6">
+                                    <div class="form-group ml-0">
+                                        <label for="tr-result">Result</label>
+                                        <input type="text" class="form-control" id="tr-result">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
+                    <div class="text-right mx-5">
+                        <button class="btn btn-disabled px-5 py-2" id="tr-btn">Ok</button>
+                    </div>
                 </div>
             </div>
         </div>
 
 
-    <!-- jQuery CDN - Slim version (=without AJAX) -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- jQuery CDN  -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <!-- Popper.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
@@ -492,28 +529,135 @@
                 $('#sidebar').toggleClass('active')
             })
 
-            $('[data-display="#subs"]').on('click', () => {
-                $('#subs').css('display', 'block')
+            //
+            $('[data-display="#response"]').on('click', () => {
+                $('body').addClass('modal-open')
+                $('#response').css('display', 'block')
+                setTimeout(() => {
+                    $('.side-pane').removeClass('loading')
+                }, 500)
+            })
+
+            // 
+            $('#confirm-response').change(() => {
+                $('#confirm-response :selected').text() === "Yes" 
+                ? $('#test-report').css('display', 'block')
+                : $('#test-report').css('display', 'none') 
+            })
+
+            // select test report to enter details
+            $('[data-display="#select-test-report"]').click((e) => {
+                const id = e.target.id // id of the selected test report
+                console.log(e.target.firstChild.textContent)
+                
+                // display the sub side pane
+                $('#select-test-report').css('display', 'block')
                 setTimeout(() => {
                     $('.side-select-pane').removeClass('loading')
                 }, 500)
+
+                // set the id of the targeted test report on the form
+                $('#tr-form').attr('data-for', id)
+
+                // inject the title of the targeted test report
+                $('#tr-title').append(e.target.firstChild.textContent)
+                
+                // listen and enable test report button if all form fields have been provided.
+                $('#tr-doc-id').on('input', () => {
+                    toggleTestReportBtn()
+                })
+                $('#tr-doc-is').on('input', () => {
+                    toggleTestReportBtn()
+                })
+                $('#tr-result').on('input', () => {
+                    toggleTestReportBtn()
+                })
+                
+                // submit the test report form
+                $('#tr-btn').on('click', () => {
+                    if ($('#tr-btn').hasClass('btn-disabled') == false) {
+                        // get the actual test report object id stored above
+                        var _id = $('#tr-form').attr('data-for')
+                        // populate the data-input attribute of the targeted test report
+                        $('#'+_id).attr('data-input', JSON.stringify(getTestReportInput().input))
+                        closeSubSidePane() // close the sub side pane
+                        denoteTestReport() // denote the test report in question
+                    }
+                })
             })
 
-            $('[data-display="#subs-rel"]').on('click', () => {
-                $('body').addClass('modal-open')
-                $('#subs-rel').css('display', 'block')
-                setTimeout(() => {
-                    $('.side-pane').removeClass('loading')
-                }, 500)
+            // close the sub side pane
+            $('.close-sub-side-pane').click(() => {
+                closeSubSidePane() // close the sub side pane
             })
 
-            $('[data-display="#migration"]').on('click', () => {
-                $('body').addClass('modal-open')
-                $('#migration').css('display', 'block')
-                setTimeout(() => {
-                    $('.side-pane').removeClass('loading')
-                }, 500)
+            // close the side pane
+            $('.close-side-pane').click(() => {
+                closeSidePane() // close the side pane
             })
+
+
+            //==============================================================//
+
+            // gets and returns input from the test report form
+            function getTestReportInput() {
+                // get form field values.
+                let doc_id = $('#tr-doc-id').val()
+                let doc_is = $('#tr-doc-is').val()
+                let result = $('#tr-result').val()
+                // check that all form fields are filled.
+                let is_valid = (doc_id != "" && doc_is != "" && result != "")
+                let input = {tr_doc_id: doc_id, tr_doc_issuer: doc_is, tr_result: result}
+                // return
+                return {is_valid: is_valid, input: input}
+            }
+
+            // enables or disables the test report button.
+            function toggleTestReportBtn() {
+                if (getTestReportInput().is_valid) {
+                    $('#tr-btn').removeClass('btn-disabled')
+                    $('#tr-btn').addClass('btn-primary')
+                } else {
+                    $('#tr-btn').removeClass('btn-primary')
+                    $('#tr-btn').addClass('btn-disabled')
+                }
+            }
+
+            // reset the test report form fields
+            function resetTestReportForm() {
+                $('#tr-doc-id').val("")
+                $('#tr-doc-is').val("")
+                $('#tr-result').val("")
+            }
+
+            //
+            function denoteTestReport() {
+                $('[data-input]:not([data-input=""])').css('background', '#eef6fd')
+            }
+
+            // closes the sub side pane
+            function closeSubSidePane() {
+                $('.side-select-pane-backdrop').fadeOut("slow", () => {
+                    $('.side-select-pane').addClass('loading')
+                    $('#tr-title').empty() // clear the sub side pane title
+                    resetTestReportForm() // reset the test report form
+                    toggleTestReportBtn() // disable the test report button 
+                })
+            }
+
+            // closes the side pane
+            function closeSidePane() {
+                $('.side-pane-backdrop').fadeOut("slow", () => {
+                    $('.side-pane').addClass('loading')
+                    $('body').removeClass('modal-open')
+                    // $('#tr-title').empty() // clear the sub side pane title
+                    // resetTestReportForm() // reset the test report form
+                    // toggleTestReportBtn() // disable the test report button 
+                })
+            }
+
+            //==============================================================//
+            //==============================================================//
 
             $('[data-display="#content-in-migration"]').on('click', () => {
                 $('body').addClass('modal-open')
