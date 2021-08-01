@@ -273,7 +273,7 @@
                     <h5 class="mt-2">Response</h5>
                     <div>
                         <button type="button" class="btn btn-light close-side-pane">Cancel</button>
-                        <button type="button" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-primary" id="tr-save">Save</button>
                     </div>
                 </div>
             </nav>
@@ -298,19 +298,19 @@
                             Test Report
                         </h5>
                         <form action="#" class="my-4">
-                            <div class="border rounded my-3 p-3" id="test-report-1" data-display="#select-test-report" data-input="">
+                            <div class="border rounded my-3 p-3 test-report" id="test-report-1" data-display="#select-test-report" data-input="">
                                 Test Report Name 1
                                 <span class="float-right">
                                     <i class="fas fa-pen text-icons"></i>
                                 </span>
                             </div>
-                            <div class="border rounded my-3 p-3" id="test-report-2" data-display="#select-test-report" data-input="">
+                            <div class="border rounded my-3 p-3 test-report" id="test-report-2" data-display="#select-test-report" data-input="">
                                 Test Report Name 2
                                 <span class="float-right">
                                     <i class="fas fa-pen text-icons"></i>
                                 </span>
                             </div>
-                            <div class="border rounded my-3 p-3" id="test-report-3" data-display="#select-test-report" data-input="">
+                            <div class="border rounded my-3 p-3 test-report" id="test-report-3" data-display="#select-test-report" data-input="">
                                 Test Report Name 3
                                 <span class="float-right">
                                     <i class="fas fa-pen text-icons"></i>
@@ -530,7 +530,7 @@
             })
 
             //
-            $('[data-display="#response"]').on('click', () => {
+            $('[data-display="#response"]').on('click', (e) => {
                 $('body').addClass('modal-open')
                 $('#response').css('display', 'block')
                 setTimeout(() => {
@@ -548,7 +548,6 @@
             // select test report to enter details
             $('[data-display="#select-test-report"]').click((e) => {
                 const id = e.target.id // id of the selected test report
-                console.log(e.target.firstChild.textContent)
                 
                 // display the sub side pane
                 $('#select-test-report').css('display', 'block')
@@ -656,24 +655,35 @@
                 })
             }
 
-            //==============================================================//
-            //==============================================================//
+            function getResponse() {
+                let tr_input = []
+                let test_reports = [...$('.test-report')]
+                test_reports.forEach((test_report) => {
+                    tr_input.push(test_report.getAttribute('data-input'))
+                })
+                // console.log(tr_input)
+                return tr_input
+            }
 
-            $('[data-display="#content-in-migration"]').on('click', () => {
-                $('body').addClass('modal-open')
-                $('#content-in-migration').css('display', 'block')
-                setTimeout(() => {
-                    $('.side-pane').removeClass('loading')
-                }, 500)
+            // save response
+            $('#tr-save').on('click', () => {
+                let response = getResponse() // get the response input
+                submitResponse(response) // submit the response
+                closeSidePane() // close the side pane
             })
 
-            $('a[area-expanded="true"].dropdown-toggle').on('click', function () {
-                console.log('Working!!!')
-                console.log($('ul.show'))
-                $('ul.show').removeClass('show')
-                var nextSibling = $(this).next()
-                    nextSibling.addClass("show")
-            });
+            function submitResponse(response) {
+                console.log(response)
+                $('[data-display="#response"] .alert-danger').empty()
+                $('[data-display="#response"] .alert-danger').append('Completed')
+                $('[data-display="#response"] .alert-danger').addClass('alert-success')
+                $('[data-display="#response"] .alert-danger').removeClass('alert-danger')
+            }
+
+            //==============================================================//
+            //==============================================================//
+
+            
         });
     </script>
 </body>
