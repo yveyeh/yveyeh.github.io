@@ -11,10 +11,11 @@
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../assets/css/sacsin-admin-style.css">
+    <link rel="stylesheet" href="../assets/css/sacsin-scrollbar-style.css">
 
     <!-- Font Awesome JS -->
-    <script defer src="assets/fontawesome-free-5.15.3-web/js/all.min.js"></script>
+    <script defer src="../assets/fontawesome-free-5.15.3-web/js/all.min.js"></script>
 </head>
 
 <body>
@@ -72,7 +73,7 @@
                     <div class="profile">
                         <span class="mr-4 notification"><i class="fa fa-bell"></i></span>
                         <span class="mr-1 username">John Doe</span>
-                        <img src="assets/img/pp_default.jpg" alt="pp" style="border-radius: 50%;" width="35px">
+                        <img src="../assets/img/pp_default.jpg" alt="pp" style="border-radius: 50%;" width="35px">
                     </div>
 
                 </div>
@@ -166,7 +167,10 @@
             <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
                     <h5 class="mt-2">Create New Product</h5>
-                    <button type="button" class="btn btn-primary">Save</button>
+                    <div>
+                        <button type="button" class="btn btn-light close-side-pane">Cancel</button>
+                        <button type="button" class="btn btn-primary">Save</button>
+                    </div>
                 </div>
             </nav>
             <div class="side-pane-wrapper">
@@ -203,27 +207,21 @@
     </div>
 
 
-    <!-- jQuery CDN - Slim version (=without AJAX) -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <!-- Popper.JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+    <!-- Custom Script -->
+    <script src="../assets/js/sacsin-admin-script.js"></script>
 
     <script type="text/javascript">
         $(document).ready(() => {
             $('#sidebarCollapse').on('click', function () {
                 $('#sidebar').toggleClass('active')
             })
-
-            $('[data-display="#product"]').on('click', () => {
-                $('body').addClass('modal-open')
-                $('#product').css('display', 'block')
-                setTimeout(() => {
-                    $('.side-pane').removeClass('loading')
-                }, 500)
-            })
-
         });
     </script>
 </body>
