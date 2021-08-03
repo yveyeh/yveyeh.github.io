@@ -14,15 +14,15 @@ $(document).ready(() => {
 
     // 
     $('#confirm-response').change(() => {
-        $('#confirm-response :selected').text() === "Yes" 
-        ? $('#test-report').css('display', 'block')
-        : $('#test-report').css('display', 'none') 
+        $('#confirm-response :selected').text() === "Yes" ?
+            $('#test-report').css('display', 'block') :
+            $('#test-report').css('display', 'none')
     })
 
     // select test report to enter details
     $('[data-display="#select-test-report"]').click((e) => {
         const id = e.target.id // id of the selected test report
-        
+
         // display the sub side pane
         $('#select-test-report').css('display', 'block')
         setTimeout(() => {
@@ -34,7 +34,7 @@ $(document).ready(() => {
 
         // inject the title of the targeted test report
         $('#tr-title').append(e.target.firstChild.textContent)
-        
+
         // listen and enable test report button if all form fields have been provided.
         $('#tr-doc-id').on('input', () => {
             toggleTestReportBtn()
@@ -45,14 +45,14 @@ $(document).ready(() => {
         $('#tr-result').on('input', () => {
             toggleTestReportBtn()
         })
-        
+
         // submit the test report form
         $('#tr-btn').on('click', () => {
             if ($('#tr-btn').hasClass('btn-disabled') == false) {
                 // get the actual test report object id stored above
                 var _id = $('#tr-form').attr('data-for')
                 // populate the data-input attribute of the targeted test report
-                $('#'+_id).attr('data-input', JSON.stringify(getTestReportInput().input))
+                $('#' + _id).attr('data-input', JSON.stringify(getTestReportInput().input))
                 closeSubSidePane() // close the sub side pane
                 denoteTestReport() // denote the test report in question
             }
@@ -80,9 +80,16 @@ $(document).ready(() => {
         let result = $('#tr-result').val()
         // check that all form fields are filled.
         let is_valid = (doc_id != "" && doc_is != "" && result != "")
-        let input = {tr_doc_id: doc_id, tr_doc_issuer: doc_is, tr_result: result}
+        let input = {
+            tr_doc_id: doc_id,
+            tr_doc_issuer: doc_is,
+            tr_result: result
+        }
         // return
-        return {is_valid: is_valid, input: input}
+        return {
+            is_valid: is_valid,
+            input: input
+        }
     }
 
     // enables or disables the test report button.
@@ -153,10 +160,9 @@ $(document).ready(() => {
     }
 
 
-    // =================================================== //
-    // =================================================== //
-
-
+    //=========================================================//
+    // Request Sentence page
+    //=========================================================//
     $('[data-display="#subs"]').on('click', () => {
         $('#subs').css('display', 'block')
         setTimeout(() => {
@@ -188,6 +194,9 @@ $(document).ready(() => {
         }, 500)
     })
 
+    //=========================================================//
+    // Product page
+    //=========================================================//
     $('[data-display="#product"]').on('click', () => {
         $('body').addClass('modal-open')
         $('#product').css('display', 'block')
@@ -196,6 +205,17 @@ $(document).ready(() => {
         }, 500)
     })
 
+    $('[data-display="#pdt-obj"]').on('click', () => {
+        $('#pdt-obj').css('display', 'block')
+        setTimeout(() => {
+            $('.side-select-pane').removeClass('loading')
+        }, 500)
+    })
+    //=========================================================//
+
+    //=========================================================//
+    // Object page
+    //=========================================================//
     $('[data-display="#object"]').on('click', () => {
         $('body').addClass('modal-open')
         $('#object').css('display', 'block')
@@ -204,6 +224,24 @@ $(document).ready(() => {
         }, 500)
     })
 
+    $('[data-display="#obj"]').on('click', () => {
+        $('#obj').css('display', 'block')
+        setTimeout(() => {
+            $('.side-select-pane').removeClass('loading')
+        }, 500)
+    })
+
+    $('[data-display="#req-resp"]').on('click', () => {
+        $('#req-resp').css('display', 'block')
+        setTimeout(() => {
+            $('.side-select-pane').removeClass('loading')
+        }, 500)
+    })
+    //=========================================================//
+
+    //=========================================================//
+    // Expected Response page
+    //=========================================================//
     $('[data-display="#exp-rep"]').on('click', () => {
         $('body').addClass('modal-open')
         $('#exp-rep').css('display', 'block')
@@ -211,13 +249,16 @@ $(document).ready(() => {
             $('.side-pane').removeClass('loading')
         }, 500)
     })
+    //========================================================//
+
+
 
     $('a[area-expanded="true"].dropdown-toggle').on('click', function () {
         console.log('Working!!!')
         console.log($('ul.show'))
         $('ul.show').removeClass('show')
         var nextSibling = $(this).next()
-            nextSibling.addClass("show")
+        nextSibling.addClass("show")
     });
 
 });
