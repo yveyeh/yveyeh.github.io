@@ -287,7 +287,7 @@ a.article:hover {
 .side-pane.loading,
 .side-select-pane.loading {
     transform: translate(100%);
-    -webkit-transform: translate(100%);    
+    -webkit-transform: translate(100%);
 }
 
 .side-pane-backdrop,

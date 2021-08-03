@@ -122,6 +122,7 @@ $(document).ready(() => {
     function closeSidePane() {
         $('.side-pane-backdrop').fadeOut("slow", () => {
             $('.side-pane').addClass('loading')
+            console.log('Got In!')
             $('body').removeClass('modal-open')
         })
     }
@@ -190,6 +191,22 @@ $(document).ready(() => {
     $('[data-display="#product"]').on('click', () => {
         $('body').addClass('modal-open')
         $('#product').css('display', 'block')
+        setTimeout(() => {
+            $('.side-pane').removeClass('loading')
+        }, 500)
+    })
+
+    $('[data-display="#object"]').on('click', () => {
+        $('body').addClass('modal-open')
+        $('#object').css('display', 'block')
+        setTimeout(() => {
+            $('.side-pane').removeClass('loading')
+        }, 500)
+    })
+
+    $('[data-display="#exp-rep"]').on('click', () => {
+        $('body').addClass('modal-open')
+        $('#exp-rep').css('display', 'block')
         setTimeout(() => {
             $('.side-pane').removeClass('loading')
         }, 500)
