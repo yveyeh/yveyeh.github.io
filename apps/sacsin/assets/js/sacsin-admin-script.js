@@ -195,6 +195,14 @@ $(document).ready(() => {
         }, 500)
     })
 
+    $('[data-display="#object"]').on('click', () => {
+        $('body').addClass('modal-open')
+        $('#object').css('display', 'block')
+        setTimeout(() => {
+            $('.side-pane').removeClass('loading')
+        }, 500)
+    })
+
     $('a[area-expanded="true"].dropdown-toggle').on('click', function () {
         console.log('Working!!!')
         console.log($('ul.show'))
