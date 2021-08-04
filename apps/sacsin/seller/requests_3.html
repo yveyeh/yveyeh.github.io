@@ -76,51 +76,9 @@
                 <h2 class="mb-5">
                     Request Package No: SS-12345678
                     <span class="float-right">
-                        <button class="btn btn-primary px-5 py-2">
-                            <i class="fas fa-share"></i>
-                            Forward
-                        </button>
+                        <samll class="alert alert-success p-2 px-5" role="alert" style="border-radius: 25px; font-size: 1.25rem;">Product Name</small>
                     </span>
                 </h2>
-
-                <div class="card shadow-sm border-0 mb-4">
-                    <div class="card-body p-0 pt-4">
-                        <div class="row text-center" style="padding: 0.5rem 5rem;">
-                            <div class="col-sm-4"><h4>General</h4></div>
-                            <div class="col-sm-4"><h4>Requestor</h4></div>
-                            <div class="col-sm-4"><h4>Responder</h4></div>
-                        </div>
-                        <hr class="mt-0">
-                        <div class="row text-center" style="padding: 0.5rem 5rem;">
-                            <div class="col-sm-4">
-                                <h5>Product/Object</h5>
-                                <p>FX3584 M6x50</p>
-                                <!-- <br> -->
-                                <h5>Request date</h5>
-                                <p>2021/06/30</p>
-                            </div>
-                            <div class="col-sm-4">
-                                <h5>Company name</h5>
-                                <p>
-                                    <span class="badge badge-primary rounded-circle">
-                                        <i class="fas fa-check"></i>
-                                    </span>
-                                    Grand Berge Carpentry
-                                </p>
-                                <!-- <br> -->
-                                <h5>Requestor ID</h5>
-                                <p>SS-12342985</p>
-                            </div>
-                            <div class="col-sm-4">
-                                <h5>Company name</h5>
-                                <p>Fittings Ltd</p>
-                                <!-- <br> -->
-                                <h5>Responder ID</h5>
-                                <p>SS-12346685</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="card shadow-sm border-0 mb-4">
                     <div class="card-body">
@@ -131,9 +89,6 @@
                             <table class="table table-hover mt-3">
                                 <thead>
                                     <tr>
-                                        <th scope="col">
-                                            <input type="checkbox" name="">
-                                        </th>
                                         <th scope="col">Element</th>
                                         <th scope="col">Standard for Test</th>
                                         <th scope="col">Maximum Limit</th>
@@ -143,9 +98,6 @@
                                     </thead>
                                     <tbody>
                                     <tr data-display="#response">
-                                        <th scope="row">
-                                            <input type="checkbox" name="">
-                                        </th>
                                         <td class="text-primary">Cadmium</td>
                                         <td>EN 71-3:2019</td>
                                         <td>100</td>
@@ -155,9 +107,6 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">
-                                            <input type="checkbox" name="">
-                                        </th>
                                         <td class="text-primary">Lead</td>
                                         <td>ISO 71-4:2020</td>
                                         <td>80</td>
@@ -167,9 +116,6 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">
-                                            <input type="checkbox" name="">
-                                        </th>
                                         <td class="text-primary">Copper</td>
                                         <td>EN 65-3:2019</td>
                                         <td>50</td>
@@ -193,9 +139,6 @@
                             <table class="table table-hover mt-3">
                                 <thead>
                                     <tr>
-                                        <th scope="col">
-                                            <input type="checkbox" name="">
-                                        </th>
                                         <th scope="col">Element</th>
                                         <th scope="col">Maximum Limit</th>
                                         <th scope="col">Unit</th>
@@ -204,9 +147,6 @@
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <th scope="row">
-                                            <input type="checkbox" name="">
-                                        </th>
                                         <td class="text-primary">Magnesium</td>
                                         <td>100</td>
                                         <td>
@@ -231,18 +171,12 @@
                             <table class="table table-hover mt-3">
                                 <thead>
                                     <tr>
-                                        <th scope="col">
-                                            <input type="checkbox" name="">
-                                        </th>
                                         <th scope="col">Substance</th>
                                         <th scope="col">Status</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <th scope="row">
-                                            <input type="checkbox" name="">
-                                        </th>
                                         <td class="text-primary">Carbondioxide</td>
                                         <td>
                                             <button class="alert alert-danger p-2 px-5" role="alert" style="border-radius: 25px;">Empty</button>
@@ -255,9 +189,7 @@
                 </div>
 
                 <div class="text-right">
-                    <button type="button" class="btn btn-primary px-5 py-2">
-                        <i class="fas fa-share"></i> Forward Selection
-                    </button>
+                    <button type="button" class="btn btn-primary px-5 py-2">OK</button>
                 </div>
 
             </div>
@@ -323,197 +255,53 @@
         </div>
     </div>
 
-    <!-- <div class="side-pane-backdrop" id="migration">
-        <div class="side-pane loading">
-            <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+    <!-- Sub Side Pane -->
+    <div class="side-select-pane-backdrop" id="select-test-report">
+        <div class="side-select-pane loading">
+            <nav class="navbar bg-light no-shadow">
                 <div class="container-fluid">
-                    <div>
-                        <h4>Create Request Sentence</h4>
-                    </div>
-                    <div>
-                        <button type="button" class="btn btn-light">Cancel</button>
-                        <button type="button" class="btn btn-primary">Save</button>
-                    </div>
+                    <h5 class="mt-2">
+                        <span class="close-sub-side-pane mr-3">
+                            <i class="fas fa-times"></i>
+                        </span>
+                        <span id="tr-title"><!-- Title is injected here --></span>
+                    </h5>
                 </div>
             </nav>
-            <div class="side-pane-wrapper">
-                <div class="card shadow-sm border-0 m-5">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            Migration from material
-                        </h5>
-                        <hr>
-                        <form action="#" class="my-4">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="mb-4">
-                                        <label for="">Element</label>
-                                        <select class="form-control" name="">
-                                            <option value="">Sodium</option>
-                                            <option value="">Carbon</option>
-                                            <option value="">Chlorine</option>
-                                            <option value="">Cobalt</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <label for="" class="text-white">Limit</label>
-                                        <select class="form-control" name="">
-                                            <option value="">Limit 0</option>
-                                            <option value="">Limit 1</option>
-                                            <option value="">Limit 2</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mb-4">
-                                        <label for="">Standard for test method</label>
-                                        <select class="form-control" name="">
-                                            <option value="">Test Method Standard 0</option>
-                                            <option value="">Test Method Standard 1</option>
-                                            <option value="">Test Method Standard 2</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <label for="">Unit of measure</label>
-                                        <select class="form-control" name="">
-                                            <option value="">Kilograms</option>
-                                            <option value="">Square meters</option>
-                                            <option value="">Cubic meters</option>
-                                        </select>
-                                    </div>
+            <div class="side-select-pane-wrapper">
+                <div class="border rounded mx-5 mb-3 p-3">
+                    <form id="tr-form">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group ml-0">
+                                    <label for="tr-doc-id">Document ID</label>
+                                    <input type="text" class="form-control" id="tr-doc-id">
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="card shadow-sm border-0 m-5">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            Expected Response
-                            <span class="float-right" data-display="#subs">
-                                <i class="fas fa-pen text-icons"></i>
-                            </span>
-                        </h5>
-                        <div class="text-center">
-                            <div class="rounded-circle mx-auto" style="background: #d5d5d5; width: 125px; height: 125px; display: flex; margin-top: 4rem;">
-                                <i class="fas fa-archive fa-3x m-auto text-white"></i>
-                            </div>
-                            <p class="text-primary pt-5 cursor-pointer" data-display="#subs">Select Expected Response</p>
                         </div>
-                    </div>
+                        <div class="row mt-3">
+                            <div class="col-sm-6">
+                                <div class="form-group ml-0">
+                                    <label for="tr-doc-is">Document Issuer</label>
+                                    <input type="text" class="form-control" id="tr-doc-is">
+                                    <small class="text-details">Accredited laboratory</small>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group ml-0">
+                                    <label for="tr-result">Result</label>
+                                    <input type="text" class="form-control" id="tr-result">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="text-right mx-5">
+                    <button class="btn btn-disabled px-5 py-2" id="tr-btn">Ok</button>
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="side-pane-backdrop" id="content-in-migration">
-        <div class="side-pane loading">
-            <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
-                    <div>
-                        <h4>Create Request Sentence</h4>
-                    </div>
-                    <div>
-                        <button type="button" class="btn btn-light">Cancel</button>
-                        <button type="button" class="btn btn-primary">Save</button>
-                    </div>
-                </div>
-            </nav>
-            <div class="side-pane-wrapper">
-                <div class="card shadow-sm border-0 m-5">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            Content in material
-                        </h5>
-                        <hr>
-                        <form action="#" class="mt-4">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="mb-4">
-                                        <label for="">Element</label>
-                                        <select class="form-control" name="">
-                                            <option value="">Sodium</option>
-                                            <option value="">Carbon</option>
-                                            <option value="">Chlorine</option>
-                                            <option value="">Cobalt</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mb-4">
-                                        <label for="">Maximum limit</label>
-                                        <select class="form-control" name="">
-                                            <option value="">Limit 0</option>
-                                            <option value="">Limit 1</option>
-                                            <option value="">Limit 2</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mb-4">
-                                        <label for="">Unit of measure</label>
-                                        <select class="form-control" name="">
-                                            <option value="">Kilograms</option>
-                                            <option value="">Square meters</option>
-                                            <option value="">Cubic meters</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
-        <!-- Sub Side Pane -->
-        <div class="side-select-pane-backdrop" id="select-test-report">
-            <div class="side-select-pane loading">
-                <nav class="navbar bg-light no-shadow">
-                    <div class="container-fluid">
-                        <h5 class="mt-2">
-                            <span class="close-sub-side-pane mr-3">
-                                <i class="fas fa-times"></i>
-                            </span>
-                            <span id="tr-title"><!-- Title is injected here --></span>
-                        </h5>
-                    </div>
-                </nav>
-                <div class="side-select-pane-wrapper">
-                    <div class="border rounded mx-5 mb-3 p-3">
-                        <form id="tr-form">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="form-group ml-0">
-                                        <label for="tr-doc-id">Document ID</label>
-                                        <input type="text" class="form-control" id="tr-doc-id">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-sm-6">
-                                    <div class="form-group ml-0">
-                                        <label for="tr-doc-is">Document Issuer</label>
-                                        <input type="text" class="form-control" id="tr-doc-is">
-                                        <small class="text-details">Accredited laboratory</small>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="form-group ml-0">
-                                        <label for="tr-result">Result</label>
-                                        <input type="text" class="form-control" id="tr-result">
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="text-right mx-5">
-                        <button class="btn btn-disabled px-5 py-2" id="tr-btn">Ok</button>
-                    </div>
-                </div>
-            </div>
-        </div>
 
 
     <!-- jQuery CDN  -->

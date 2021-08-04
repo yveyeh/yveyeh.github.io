@@ -38,7 +38,7 @@
                     </a>
                     <ul class="collapse list-unstyled" id="requestPackage">
                         <li class="current">
-                            <a href="product.html">Product</a>
+                            <a href="product.html">Create Request</a>
                         </li>
                         <li>
                             <a href="object.html">Object</a>
@@ -83,16 +83,39 @@
 
             <div class="p-5 pt-4">
 
-                <!-- <h2 class="mb-5">Request Sentences</h2> -->
+                <h2 class="mb-5">Request Package</h2>
+
+                <div class="card shadow-sm border-0 mb-4">
+                    <div class="card-body p-0 pt-4">
+                        <div class="row p-5">
+                            <div class="col-sm-6">
+                                <h5>Product</h5>
+                                <select class="form-control" name="">
+                                    <option value="">Product 0</option>
+                                    <option value="">Product 1</option>
+                                    <option value="">Product 2</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <h5>Seller</h5>
+                                <select class="form-control" name="">
+                                    <option value="">Seller 0</option>
+                                    <option value="">Seller 1</option>
+                                    <option value="">Seller 2</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="card shadow-sm border-0 mb-4">
                     <div class="card-body">
                         <h4 class="card-title">
-                            Products
+                            Object(s)
                             <span class="card-actions">
                                 <span><i class="fa fa-trash"></i></span>
                                 <span><i class="fa fa-search"></i></span>
-                                <span><button class="btn btn-primary-light" data-display="#product">New</button></span>
+                                <span><button class="btn btn-primary-light" data-display="#object">New</button></span>
                             </span>
                         </h4>
                         <div class="table-responsive mt-5">
@@ -103,7 +126,7 @@
                                             <input type="checkbox" name="">
                                         </th>
                                         <th scope="col">Name</th>
-                                        <th scope="col">Request Response Package</th>
+                                        <th scope="col">Request Response Sentence</th>
                                         <th scope="col">Last Edited</th>
                                     </tr>
                                     </thead>
@@ -112,14 +135,14 @@
                                         <th scope="row">
                                             <input type="checkbox" name="">
                                         </th>
-                                        <td class="text-primary">Product 5</td>
+                                        <td class="text-primary">Object 1</td>
                                         <td>
                                             <button class="alert alert-success" role="alert" style="border-radius: 25px;">
-                                                Object 1
+                                                Request Response Name
                                             </button>
                                             <br>
                                             <button class="alert alert-warning" role="alert" style="border-radius: 25px;">
-                                                Object 2
+                                                Request Response Name
                                             </button>
                                         </td>
                                         <td>2 mins</td>
@@ -128,10 +151,10 @@
                                         <th scope="row">
                                             <input type="checkbox" name="">
                                         </th>
-                                        <td class="text-primary">Product 4</td>
+                                        <td class="text-primary">Object 2</td>
                                         <td>
                                             <button class="alert alert-success" role="alert" style="border-radius: 25px;">
-                                                Object 3
+                                                Request Response Name
                                             </button>
                                         </td>
                                         <td>30 mins</td>
@@ -140,10 +163,10 @@
                                         <th scope="row">
                                             <input type="checkbox" name="">
                                         </th>
-                                        <td class="text-primary">Product 3</td>
+                                        <td class="text-primary">Object 3</td>
                                         <td>
                                             <button class="alert alert-success" role="alert" style="border-radius: 25px;">
-                                                Object 4
+                                                Request Response Name
                                             </button>
                                         </td>
                                         <td>2 hrs</td>
@@ -164,7 +187,7 @@
     </div>
 
     <!-- Side Pane -->
-    <div class="side-pane-backdrop" id="product">
+    <div class="side-pane-backdrop" id="object">
         <div class="side-pane loading">
             <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
@@ -179,26 +202,12 @@
                 <div class="card shadow-sm border-0 m-5">
                     <div class="card-body">
                         <h5 class="card-title">
-                            Select Product
-                        </h5>
-                        <form action="#">
-                            <select class="form-control" name="">
-                                <option value="">Product 0</option>
-                                <option value="">Product 1</option>
-                                <option value="">Product 2</option>
-                            </select>
-                        </form>
-                    </div>
-                </div>
-                <div class="card shadow-sm border-0 m-5">
-                    <div class="card-body">
-                        <h5 class="card-title">
                             Request Response Package
                             <span class="float-right" data-display="#pdt-obj">
                                 <i class="fas fa-pen text-icons"></i>
                             </span>
                         </h5>
-                        <div class="text-center">
+                        <div class="text-center" id="selected-req-resp-packs">
                             <div class="rounded-circle mx-auto" style="background: #d5d5d5; width: 125px; height: 125px; display: flex; margin-top: 4rem;">
                                 <i class="fas fa-archive fa-3x m-auto text-white"></i>
                             </div>
@@ -234,12 +243,15 @@
             </nav>
             <div class="side-select-pane-wrapper">
                 <form>
-                    <div class="scrollable">
+                    <div class="text-center mb-3">
+                        <button type="button" class="btn btn-primary" id="select-req-resp-pack">Select</button>
+                    </div>
+                    <div class="scrollable response-pack">
                         <div class="row ml-0">
                             <div class="col-sm-1">
                                 <input type="checkbox">
                             </div>
-                            <div class="col-sm-9">
+                            <div class="col-sm-9 option-txt">
                                 Object 1
                             </div>
                         </div>
@@ -247,7 +259,7 @@
                             <div class="col-sm-1">
                                 <input type="checkbox">
                             </div>
-                            <div class="col-sm-9">
+                            <div class="col-sm-9 option-txt">
                                 Object 2
                             </div>
                         </div>
@@ -255,7 +267,7 @@
                             <div class="col-sm-1">
                                 <input type="checkbox">
                             </div>
-                            <div class="col-sm-9">
+                            <div class="col-sm-9 option-txt">
                                 Object 3
                             </div>
                         </div>

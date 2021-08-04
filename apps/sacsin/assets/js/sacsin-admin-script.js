@@ -129,7 +129,6 @@ $(document).ready(() => {
     function closeSidePane() {
         $('.side-pane-backdrop').fadeOut("slow", () => {
             $('.side-pane').addClass('loading')
-            console.log('Got In!')
             $('body').removeClass('modal-open')
         })
     }
