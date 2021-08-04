@@ -39,7 +39,7 @@
                     </a>
                     <ul class="collapse list-unstyled" id="requestPackage">
                         <li>
-                            <a href="product.html">Product</a>
+                            <a href="product.html">Create Request</a>
                         </li>
                         <li>
                             <a href="object.html">Object</a>
@@ -308,8 +308,8 @@
                                         </select>
                                     </div>
                                     <div>
-                                        <label for="" class="text-white">Limit</label>
-                                        <input class="form-control" type="number" min="0" name="">
+                                        <label for="">Maximum Limit</label>
+                                        <input class="form-control" type="number" min="1" name="">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -342,7 +342,7 @@
                                 <i class="fas fa-pen text-icons"></i>
                             </span>
                         </h5>
-                        <div class="text-center">
+                        <div class="text-center" id="selected-exp-resps">
                             <div class="rounded-circle mx-auto" style="background: #d5d5d5; width: 125px; height: 125px; display: flex; margin-top: 4rem;">
                                 <i class="fas fa-archive fa-3x m-auto text-white"></i>
                             </div>
@@ -421,7 +421,7 @@
                 <nav class="navbar bg-light no-shadow">
                     <div class="container-fluid">
                         <h5 class="mt-2">
-                            <span class="mr-3">
+                            <span class="close-sub-side-pane mr-3">
                                 <i class="fas fa-times"></i>
                             </span>
                             Select Expected Response
@@ -435,13 +435,17 @@
                 </nav>
                 <div class="side-select-pane-wrapper">
                     <form>
-                        <div class="scrollable">
+                        <div class="text-center mb-3">
+                            <button type="button" class="btn btn-primary" id="select-exp-resp">Select</button>
+                        </div>
+                        <div class="scrollable responses">
                             <div class="row ml-0">
                                 <div class="col-sm-1">
                                     <input type="checkbox">
                                 </div>
                                 <div class="col-sm-9">
-                                    Response Name 1 <br>
+                                    <span class="option-txt">Response Name 1</span>
+                                    <br>
                                     <span class="text-details">
                                         EN:123456, Doc ID, Doc Issuer, Result
                                     </span>
@@ -452,7 +456,8 @@
                                     <input type="checkbox">
                                 </div>
                                 <div class="col-sm-9">
-                                    Response Name 2 <br>
+                                    <span class="option-txt">Response Name 2</span> 
+                                    <br>
                                     <span class="text-details">
                                         EN:123456, Doc ID, Result
                                     </span>
@@ -463,7 +468,8 @@
                                     <input type="checkbox">
                                 </div>
                                 <div class="col-sm-9">
-                                    Response Name 3 <br>
+                                    <span class="option-txt">Response Name 3</span>
+                                    <br>
                                     <span class="text-details">
                                         EN:123456, Doc ID, Expiry Date
                                     </span>
@@ -484,6 +490,28 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <!-- Custom Script -->
     <script src="../assets/js/sacsin-admin-script.js"></script>
+
+    <script>
+        $(document).ready(function($) {
+
+            // Select Object
+            $(".scrollable.responses").contents().find(":checkbox").bind("change", function() {
+                val = this.checked, $(this).parent().parent().toggleClass("checked");
+                let selected_exp_resps = []
+                $('.responses .checked .option-txt').each((i, elm) => {
+                    selected_exp_resps.push(elm.innerHTML)
+                })
+                console.log(selected_exp_resps)
+                $('#select-exp-resp').on('click', () => {
+                    $('#selected-exp-resps').empty()
+                    selected_exp_resps.forEach((exp_resp) => {
+                        $('#selected-exp-resps').append(`<div class="border rounded my-3 p-3">${exp_resp}</div>`)
+                    })
+                })
+            })
+
+        })
+    </script>
 
 </body>
 
