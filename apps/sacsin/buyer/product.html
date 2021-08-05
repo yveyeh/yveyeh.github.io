@@ -191,7 +191,7 @@
         <div class="side-pane loading">
             <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
-                    <h5 class="mt-2">Create New Product</h5>
+                    <h5 class="mt-2">Create New Object</h5>
                     <div>
                         <button type="button" class="btn btn-light close-side-pane">Cancel</button>
                         <button type="button" class="btn btn-primary">Save</button>
@@ -202,16 +202,30 @@
                 <div class="card shadow-sm border-0 m-5">
                     <div class="card-body">
                         <h5 class="card-title">
-                            Request Response Package
-                            <span class="float-right" data-display="#pdt-obj">
+                            Select Object
+                        </h5>
+                        <form action="#">
+                            <select class="form-control" name="">
+                                <option value="">Object 0</option>
+                                <option value="">Object 1</option>
+                                <option value="">Object 2</option>
+                            </select>
+                        </form>
+                    </div>
+                </div>
+                <div class="card shadow-sm border-0 m-5">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            Request Response Sentence
+                            <span class="float-right" data-display="#req-resp">
                                 <i class="fas fa-pen text-icons"></i>
                             </span>
                         </h5>
-                        <div class="text-center" id="selected-req-resp-packs">
+                        <div class="text-center" id="selected-req-resps">
                             <div class="rounded-circle mx-auto" style="background: #d5d5d5; width: 125px; height: 125px; display: flex; margin-top: 4rem;">
                                 <i class="fas fa-archive fa-3x m-auto text-white"></i>
                             </div>
-                            <p class="text-primary pt-5 cursor-pointer" data-display="#pdt-obj">Select Request Response Package</p>
+                            <p class="text-primary pt-5 cursor-pointer" data-display="#req-resp">Select Request Response Sentence</p>
                         </div>
                     </div>
                 </div>
@@ -224,7 +238,7 @@
     </div>
 
     <!-- Sub Side Pane -->
-    <div class="side-select-pane-backdrop" id="pdt-obj">
+    <div class="side-select-pane-backdrop" id="req-resp">
         <div class="side-select-pane loading">
             <nav class="navbar bg-light no-shadow">
                 <div class="container-fluid">
@@ -232,7 +246,7 @@
                         <span class="close-sub-side-pane mr-3">
                             <i class="fas fa-times"></i>
                         </span>
-                        Select Request Response Package
+                        Select Request Response Sentence
                     </h5>
                     <div>
                         <span>
@@ -243,16 +257,16 @@
             </nav>
             <div class="side-select-pane-wrapper">
                 <form>
-                    <div class="text-center mb-3">
-                        <button type="button" class="btn btn-primary" id="select-req-resp-pack">Select</button>
+                    <div class="text-left ml-5 mb-3">
+                        <button type="button" class="btn btn-primary" id="select-req-resp">Select</button>
                     </div>
-                    <div class="scrollable response-pack">
+                    <div class="scrollable request-response">
                         <div class="row ml-0">
                             <div class="col-sm-1">
                                 <input type="checkbox">
                             </div>
                             <div class="col-sm-9 option-txt">
-                                Object 1
+                                Request response name 1
                             </div>
                         </div>
                         <div class="row ml-0">
@@ -260,7 +274,7 @@
                                 <input type="checkbox">
                             </div>
                             <div class="col-sm-9 option-txt">
-                                Object 2
+                                Request response name 2
                             </div>
                         </div>
                         <div class="row ml-0">
@@ -268,7 +282,7 @@
                                 <input type="checkbox">
                             </div>
                             <div class="col-sm-9 option-txt">
-                                Object 3
+                                Request response name 3
                             </div>
                         </div>
                     </div>
@@ -286,6 +300,31 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <!-- Custom Script -->
     <script src="../assets/js/sacsin-admin-script.js"></script>
+
+    <script>
+        $(document).ready(function($) {
+
+            // Select Request Response Sentence
+            $(".scrollable.request-response").contents().find(":checkbox").bind("change", function() {
+                val = this.checked, $(this).parent().parent().toggleClass("checked");
+                // console.log($(this).parent().siblings()[0].innerText)
+                let checked = [...$(".scrollable.request-response").find('.checked')]
+                // console.log(checked)
+                let selected_req_resp = []
+                $('.request-response .checked .option-txt').each((i, _elm) => {
+                    selected_req_resp.push(_elm.innerHTML)
+                })
+                // console.log(selected_req_resp)
+                $('#select-req-resp').on('click', () => {
+                    $('#selected-req-resps').empty()
+                    selected_req_resp.forEach((req_resp) => {
+                        $('#selected-req-resps').append(`<div class="border rounded my-3 p-3">${req_resp}</div>`)
+                    })
+                })
+            })
+
+        })
+    </script>
 
 </body>
 
