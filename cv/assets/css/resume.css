@@ -208,7 +208,18 @@ section.resume-section .resume-item .resume-date {
 
 .btn-primary {
     background-color: rgba(0, 46, 102, 0.9) !important;
-    border-color: rgba(0, 46, 102, 0.9) !important;
+    border: 2px solid rgba(0, 46, 102, 0.9) !important;
+}
+
+.btn-outline-primary {
+    background-color: rgba(0, 46, 102, 0) !important;
+    border: 2px solid rgba(0, 46, 102, 0.9) !important;
+    color: rgba(0, 46, 102, 0.9) !important;
+}
+
+.btn-outline-primary:hover {
+    background-color: rgba(0, 46, 102, 0.9) !important;
+    color: rgba(255, 255, 255, 1) !important;
 }
 
 .text-primary {
