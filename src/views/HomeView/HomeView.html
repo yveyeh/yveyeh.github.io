@@ -1,0 +1,128 @@
+<div class="relative min-h-dvh overflow-hidden bg-navy-900 bg-[url(/assets/img/bg-mobile-fallback.jpg)] bg-cover bg-center font-sans text-white antialiased">
+  <!-- Background video (hidden on touch devices, which use the fallback image) -->
+  <video
+    class="fixed top-1/2 left-1/2 z-0 min-h-full min-w-full -translate-x-1/2 -translate-y-1/2 object-cover pointer-coarse:hidden"
+    playsinline
+    autoplay
+    muted
+    loop
+    aria-hidden="true"
+  >
+    <source src="/assets/video/bg.mp4" type="video/mp4" />
+  </video>
+  <div class="fixed inset-0 z-[1] bg-umber/70" aria-hidden="true" />
+
+  <AppsLauncher />
+
+  <!-- Masthead -->
+  <main class="relative z-[2] flex min-h-dvh items-center md:w-[44rem] lg:w-[46rem]">
+    <!-- Skewed panel -->
+    <div
+      class="absolute inset-0 -skew-y-0 bg-linear-to-br from-navy-800/90 to-navy-900/85 shadow-2xl shadow-black/40 backdrop-blur-[2px] md:origin-top-right md:-skew-x-[8deg]"
+      aria-hidden="true"
+    />
+
+    <section
+      class="relative w-full px-6 py-20 transition duration-700 ease-out starting:translate-y-4 starting:opacity-0 sm:px-10 md:py-12 md:pr-32 md:pl-14"
+    >
+      <!-- Profile Headshot & Status -->
+      <div class="mb-6 flex items-center gap-4">
+        <div class="relative group">
+          <div class="absolute -inset-1 rounded-full bg-linear-to-r from-gold-300 via-gold-400 to-gold-500 opacity-75 blur-sm transition duration-500 group-hover:opacity-100 animate-pulse"></div>
+          <img
+            src="/assets/img/didier-headshot.jpg"
+            alt="Didier Yufenyuy Veyeh"
+            class="relative size-24 sm:size-28 rounded-full object-cover border-2 border-gold-300 shadow-xl"
+          />
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/15 px-3 py-1 text-xs font-medium text-emerald-300 ring-1 ring-emerald-400/30 backdrop-blur-sm">
+              <span class="size-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              Available for Projects
+            </span>
+          </div>
+          <p class="mt-1.5 text-lg font-bold capitalize tracking-[0.2em] text-gold-400">DevSecOps Solutions Architect</p>
+          <p class="mt-1.5 text-sm font-semibold lowercase tracking-[0.2em] text-gold-400">didi@yveyeh.dev</p>
+        </div>
+      </div>
+
+      <h1 class="mb-3 flex items-center gap-3 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+        Welcome!
+      </h1>
+
+      <p class="mb-4 min-h-[2rem] text-lg font-light md:text-xl">
+        <span>{{ typedPart1 }}</span><span v-if="typedName">&nbsp;</span><strong v-if="typedName" class="font-semibold text-white">{{ typedName }}</strong><span v-if="typedPart2">{{ typedPart2 }}</span>
+        <span
+          v-if="isTyping"
+          class="inline-block h-5 w-[2px] ml-0.5 bg-gold-400 animate-cursor-blink align-middle"
+          aria-hidden="true"
+        />
+        <Transition
+          enter-active-class="transition duration-300 ease-out"
+          enter-from-class="opacity-0 scale-75"
+          enter-to-class="opacity-100 scale-100"
+        >
+          <span
+            v-if="showBadge"
+            class="ml-1.5 inline-block rounded-full bg-gold-400 px-3 py-0.5 text-sm font-semibold tracking-wide text-navy-900 shadow-md shadow-gold-500/30 animate-badge-blink align-middle"
+          >
+            Didi
+          </span>
+        </Transition>
+      </p>
+
+      <p class="mb-8 max-w-lg text-base sm:text-lg leading-relaxed font-light text-white/90">
+        Welcome to my digital space. I am a DevSecOps Solutions Architect dedicated to engineering secure-by-design cloud infrastructure, automated CI/CD security pipelines, and resilient software systems. Explore my open-source projects, architecture blueprints, and technical publications.
+      </p>
+
+      <div class="flex flex-col gap-3 sm:flex-row sm:gap-4">
+        <!-- Code repositories pill with GitHub & GitLab links -->
+        <div
+          id="code-repos-pill"
+          class="inline-flex items-center justify-between gap-3.5 rounded-full bg-linear-to-r from-gold-300 to-gold-500 py-1.5 pr-2 pl-6 shadow-lg shadow-gold-500/30 transition duration-300 hover:shadow-xl hover:shadow-gold-500/40"
+        >
+          <span class="text-sm font-bold tracking-[0.15em] text-navy-900 uppercase select-none">Code</span>
+          <div class="flex items-center gap-2">
+            <a
+              id="github-code-btn"
+              href="https://github.com/yveyeh?tab=repositories"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub Repositories"
+              title="Browse GitHub Repositories"
+              class="grid size-9 place-items-center rounded-full bg-navy-900 text-white shadow-md transition duration-300 hover:scale-110 hover:bg-black focus-visible:ring-2 focus-visible:ring-navy-900 focus-visible:outline-none"
+            >
+              <BrandIcon :icon="faGithub" class="size-5" />
+            </a>
+            <a
+              id="gitlab-code-btn"
+              href="https://gitlab.com/yveyeh"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitLab Repositories"
+              title="Browse GitLab Repositories"
+              class="grid size-9 place-items-center rounded-full bg-[#fc6d26] text-white shadow-md transition duration-300 hover:scale-110 hover:bg-[#e24329] focus-visible:ring-2 focus-visible:ring-[#fc6d26] focus-visible:outline-none"
+            >
+              <BrandIcon :icon="faGitlab" class="size-5" />
+            </a>
+          </div>
+        </div>
+        <router-link
+          id="visit-blog-btn"
+          to="/blog"
+          class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-gold-400 px-7 py-3 text-sm font-semibold tracking-[0.15em] text-gold-400 uppercase backdrop-blur-sm transition duration-300 hover:-translate-y-0.5 hover:bg-gold-400 hover:text-navy-900 focus-visible:ring-4 focus-visible:ring-gold-300/60 focus-visible:outline-none active:translate-y-0"
+        >
+          Explore My Blog
+        </router-link>
+        <router-link
+          id="visit-jobs-btn"
+          to="/jobs"
+          class="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-semibold tracking-[0.15em] text-white uppercase backdrop-blur-sm transition duration-300 hover:-translate-y-0.5 hover:bg-white/20 hover:border-gold-400/60 hover:text-gold-300 focus-visible:ring-4 focus-visible:ring-gold-300/60 focus-visible:outline-none"
+        >
+          Tech Opportunities
+        </router-link>
+      </div>
+    </section>
+  </main>
+</div>

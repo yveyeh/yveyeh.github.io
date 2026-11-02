@@ -3,21 +3,26 @@
   "private": true,
   "version": "3.0.0",
   "type": "module",
-  "description": "Didi's personal digital space - Yufenyuy Veyeh Didier",
-  "author": "Yufenyuy Veyeh Didier <https://yveyeh.github.io>",
+  "description": "Didi's personal digital space - Didier Yufenyuy Veyeh",
+  "author": "Didier Yufenyuy Veyeh <https://yveyeh.github.io>",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "type-check": "tsc --noEmit",
     "preview": "vite preview"
   },
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^6.7.2",
-    "vue": "^3.5.13"
+    "@fortawesome/free-solid-svg-icons": "^7.3.1",
+    "marked": "^18.1.2",
+    "vue": "^3.5.13",
+    "vue-router": "^4.6.4"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.0",
     "@vitejs/plugin-vue": "^5.2.1",
     "tailwindcss": "^4.1.0",
+    "typescript": "^7.0.2",
     "vite": "^6.2.0"
   }
 }

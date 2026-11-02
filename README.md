@@ -1,4 +1,4 @@
-## [Yufenyuy Veyeh Didier - Online](https://yveyeh.github.io)
+## [Didier Yufenyuy Veyeh - Online](https://yveyeh.github.io)
 
 This is my online personal digital space...
 

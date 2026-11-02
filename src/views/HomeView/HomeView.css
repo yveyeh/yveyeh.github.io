@@ -1,0 +1,25 @@
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-cursor-blink {
+  animation: cursor-blink 0.75s step-end infinite;
+}
+
+@keyframes badge-blink {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 4px 14px rgba(245, 180, 0, 0.5);
+  }
+  50% {
+    opacity: 0.25;
+    transform: scale(0.95);
+    box-shadow: 0 0 0 rgba(245, 180, 0, 0);
+  }
+}
+
+.animate-badge-blink {
+  animation: badge-blink 0.6s ease-in-out 3;
+}
