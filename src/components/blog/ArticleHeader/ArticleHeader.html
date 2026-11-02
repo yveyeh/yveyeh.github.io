@@ -1,0 +1,26 @@
+<header class="mb-10 border-b border-white/10 pb-8">
+  <div class="flex flex-wrap items-center gap-2.5 text-xs text-gold-400">
+    <span class="rounded-full bg-gold-400/20 px-3 py-1 font-semibold uppercase tracking-wider">
+      {{ post.category }}
+    </span>
+    <span class="text-white/40">•</span>
+    <span class="text-white/60">{{ post.date }}</span>
+  </div>
+  <h1 class="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl leading-tight text-white">
+    {{ post.title }}
+  </h1>
+  <p class="mt-4 text-base sm:text-lg font-light leading-relaxed text-white/80">
+    {{ post.summary }}
+  </p>
+  <div class="mt-6 flex items-center gap-3">
+    <img
+      :src="post.author?.avatar || '/assets/img/didier-headshot.jpg'"
+      :alt="post.author?.name || 'Didier Yufenyuy Veyeh'"
+      class="size-11 rounded-full border border-gold-400/80 object-cover"
+    />
+    <div>
+      <p class="text-xs sm:text-sm font-bold text-white">{{ post.author?.name }}</p>
+      <p class="text-[11px] text-gold-400 font-medium">{{ post.author?.title }}</p>
+    </div>
+  </div>
+</header>

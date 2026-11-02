@@ -1,0 +1,13 @@
+<section class="mt-16 border-t border-white/10 pt-12">
+  <div class="flex items-center justify-between mb-8">
+    <h2 class="text-lg font-bold text-white tracking-wide">Discussion ({{ comments.length }})</h2>
+    <span class="text-xs text-white/50">Community Feedback</span>
+  </div>
+  <CommentForm @submit="onAddComment" />
+  <div class="mt-8 space-y-4">
+    <p v-if="!comments.length" class="text-xs text-white/50 italic py-4 text-center">
+      No comments yet. Be the first to share your thoughts!
+    </p>
+    <CommentItem v-for="c in comments" :key="c.id" :comment="c" />
+  </div>
+</section>

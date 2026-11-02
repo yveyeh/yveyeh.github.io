@@ -1,0 +1,15 @@
+<div class="rounded-2xl border border-white/10 bg-navy-800/50 p-4 sm:p-5">
+  <div class="flex items-center justify-between gap-3">
+    <div class="flex items-center gap-2.5">
+      <div :class="[comment.avatarColor || 'bg-blue-600', 'grid size-8 place-items-center rounded-full text-xs font-bold text-white shadow-sm']">
+        {{ comment.authorName.charAt(0).toUpperCase() }}
+      </div>
+      <div>
+        <span class="block text-xs font-bold text-white">{{ comment.authorName }}</span>
+        <span v-if="comment.authorHandle" class="block text-[11px] text-gold-400/90 font-mono">{{ comment.authorHandle }}</span>
+      </div>
+    </div>
+    <span class="text-[11px] text-white/40">{{ formattedTime }}</span>
+  </div>
+  <p class="mt-3 text-sm font-light leading-relaxed text-white/80 whitespace-pre-wrap">{{ comment.content }}</p>
+</div>

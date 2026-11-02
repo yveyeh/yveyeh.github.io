@@ -1,0 +1,186 @@
+<div class="min-h-screen bg-navy-900 text-white font-sans antialiased selection:bg-gold-400 selection:text-navy-900">
+  <AppsLauncher />
+
+  <!-- Navigation Header -->
+  <header class="sticky top-0 z-40 border-b border-white/10 bg-navy-900/80 backdrop-blur-md">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+      <router-link to="/" class="group flex items-center gap-3">
+        <img
+          src="/assets/img/didier-headshot.jpg"
+          alt="Didier Yufenyuy Veyeh"
+          class="size-10 rounded-full border border-gold-400/80 object-cover shadow-sm transition duration-300 group-hover:scale-105"
+        />
+        <div>
+          <span class="block text-sm font-bold tracking-wider text-white">Didier Y. Veyeh</span>
+          <span class="block text-[11px] font-medium tracking-widest text-gold-400 uppercase">DevSecOps Architect</span>
+        </div>
+      </router-link>
+
+      <nav class="flex items-center gap-3 sm:gap-5">
+        <router-link
+          to="/"
+          class="text-xs font-semibold uppercase tracking-wider text-white/70 transition hover:text-gold-300"
+        >
+          ← Home
+        </router-link>
+        <router-link
+          to="/jobs"
+          class="text-xs font-semibold uppercase tracking-wider text-gold-400 transition hover:text-gold-300"
+        >
+          Tech Opportunities
+        </router-link>
+        <router-link
+          to="/admin"
+          class="inline-flex items-center gap-1.5 rounded-full border border-gold-400/30 bg-gold-400/10 px-3.5 py-1.5 text-xs font-semibold tracking-wider text-gold-300 transition duration-300 hover:bg-gold-400 hover:text-navy-900"
+          title="Blog Authoring Studio"
+        >
+          <span class="size-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          Admin Studio
+        </router-link>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="mx-auto max-w-7xl px-6 py-12 lg:py-16">
+    <!-- Title & Hero Banner -->
+    <section class="mb-12 max-w-3xl">
+      <div class="inline-flex items-center gap-2 rounded-full border border-gold-400/30 bg-gold-400/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-gold-300">
+        <span>Technical Publications</span>
+      </div>
+      <h1 class="mt-4 text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl text-white">
+        DevSecOps & Cloud Engineering
+      </h1>
+      <p class="mt-4 text-base sm:text-lg leading-relaxed font-light text-white/80">
+        Architectural blueprints, hands-on security pipelines, and zero-trust engineering patterns for modern cloud-native systems.
+      </p>
+
+      <!-- Search Bar -->
+      <div class="mt-8 relative max-w-xl">
+        <input
+          v-model="searchQuery"
+          type="search"
+          placeholder="Search articles by title, keywords, or tags (e.g. Kubernetes, OIDC)..."
+          class="w-full rounded-2xl border border-white/15 bg-navy-800/80 px-5 py-3.5 pr-10 text-sm text-white placeholder-white/40 shadow-inner backdrop-blur-sm transition duration-300 focus:border-gold-400 focus:bg-navy-800 focus:ring-4 focus:ring-gold-400/20 focus:outline-none"
+        />
+        <button
+          v-if="searchQuery"
+          @click="searchQuery = ''"
+          class="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-bold text-white/40 hover:text-white"
+        >
+          ✕
+        </button>
+      </div>
+
+      <!-- Category Filters -->
+      <div class="mt-6 flex flex-wrap gap-2">
+        <button
+          v-for="cat in categories"
+          :key="cat"
+          @click="selectedCategory = cat"
+          :class="[
+            'rounded-full px-4 py-1.5 text-xs font-semibold tracking-wider uppercase transition duration-300 cursor-pointer',
+            selectedCategory === cat
+              ? 'bg-gold-400 text-navy-900 shadow-md shadow-gold-500/30 scale-105'
+              : 'border border-white/10 bg-white/5 text-white/70 hover:bg-white/10 hover:text-white'
+          ]"
+        >
+          {{ cat }}
+        </button>
+      </div>
+    </section>
+
+    <!-- Featured Article Spotlight -->
+    <section v-if="isFeaturedBannerVisible" class="mb-14">
+      <router-link
+        :to="`/blog/${featuredPost.slug}`"
+        class="group relative block overflow-hidden rounded-3xl border border-gold-400/30 bg-linear-to-br from-navy-800/90 to-navy-950 p-6 sm:p-10 shadow-2xl transition duration-500 hover:border-gold-400/60 hover:shadow-gold-500/10"
+      >
+        <div class="flex flex-wrap items-center justify-between gap-3 text-xs text-gold-400">
+          <span class="rounded-full bg-gold-400/20 px-3 py-1 font-semibold tracking-wider uppercase">
+            Featured Blueprint
+          </span>
+          <div class="flex items-center gap-3 text-white/60">
+            <span>{{ featuredPost.date }}</span>
+            <span>•</span>
+            <span>{{ featuredPost.readTime }}</span>
+          </div>
+        </div>
+
+        <h2 class="mt-4 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white transition duration-300 group-hover:text-gold-300">
+          {{ featuredPost.title }}
+        </h2>
+
+        <p class="mt-3 max-w-3xl text-base sm:text-lg leading-relaxed font-light text-white/80">
+          {{ featuredPost.summary }}
+        </p>
+
+        <div class="mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-6">
+          <div class="flex flex-wrap gap-2">
+            <span
+              v-for="tag in featuredPost.tags"
+              :key="tag"
+              class="rounded-md bg-white/10 px-2.5 py-1 text-xs font-medium text-white/80"
+            >
+              #{{ tag }}
+            </span>
+          </div>
+          <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-gold-400 transition-transform duration-300 group-hover:translate-x-1">
+            Read Deep Dive →
+          </span>
+        </div>
+      </router-link>
+    </section>
+
+    <!-- Articles Grid -->
+    <section>
+      <div class="mb-6 flex items-center justify-between border-b border-white/10 pb-3">
+        <h2 class="text-xs font-bold tracking-[0.2em] uppercase text-white/60">
+          {{ filteredPosts.length }} {{ filteredPosts.length === 1 ? 'Article' : 'Articles' }} Available
+        </h2>
+      </div>
+
+      <div v-if="filteredPosts.length === 0" class="rounded-3xl border border-white/10 bg-navy-800/40 p-12 text-center">
+        <p class="text-lg font-light text-white/70">No articles match your search query.</p>
+        <button
+          @click="searchQuery = ''; selectedCategory = 'All'"
+          class="mt-4 inline-flex items-center rounded-full bg-gold-400 px-5 py-2 text-xs font-semibold uppercase tracking-wider text-navy-900"
+        >
+          Clear Filters
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <PostCard v-for="post in displayPosts" :key="post.id" :post="post" />
+      </div>
+    </section>
+
+    <!-- Bottom Author Card -->
+    <section class="mt-20 rounded-3xl border border-white/10 bg-linear-to-r from-navy-800 to-navy-900 p-8 sm:p-10 shadow-2xl">
+      <div class="flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
+        <img
+          src="/assets/img/didier-headshot.jpg"
+          alt="Didier Yufenyuy Veyeh"
+          class="size-20 rounded-full border-2 border-gold-300 object-cover shadow-lg"
+        />
+        <div class="flex-1">
+          <h3 class="text-xl font-bold text-white">Didier Yufenyuy Veyeh</h3>
+          <p class="text-xs font-semibold uppercase tracking-wider text-gold-400">DevSecOps Solutions Architect</p>
+          <p class="mt-2 text-sm leading-relaxed font-light text-white/80 max-w-2xl">
+            Specializing in secure cloud transformations, zero-trust container pipelines, and Infrastructure as Code compliance. Have questions or looking to collaborate?
+          </p>
+        </div>
+        <div class="flex flex-col gap-2">
+          <a
+            href="https://github.com/yveyeh"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="rounded-full bg-gold-400 px-6 py-2.5 text-xs font-bold uppercase tracking-wider text-navy-900 shadow-md transition duration-300 hover:scale-105"
+          >
+            Connect on GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>

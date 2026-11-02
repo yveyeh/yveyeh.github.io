@@ -1,0 +1,6 @@
+<div class="mt-12 flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-3xl border border-white/10 bg-navy-800/60 p-4 sm:p-5 backdrop-blur-sm">
+  <div class="flex items-center gap-2">
+    <PostReactions :reactions="reactions" :user-reactions="userReactions" @react="onReact" />
+  </div>
+  <PostShareBar :title="title" :shares="shares" @shared="onShared" />
+</div>

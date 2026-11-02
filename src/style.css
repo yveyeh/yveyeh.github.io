@@ -1,0 +1,18 @@
+/*
+ * Tailwind CSS v4 entry — no hand-written CSS rules beyond design tokens.
+ * @author Didier Yufenyuy Veyeh <https://yveyeh.github.io>
+ */
+@import "tailwindcss";
+
+@theme {
+  /* Futura first (when installed, e.g. macOS), then Jost — a free geometric Futura revival. */
+  --font-sans: "Futura", "Futura PT", "Jost", ui-sans-serif, system-ui, sans-serif;
+
+  --color-navy-900: #001a3d;
+  --color-navy-800: #002e66;
+  --color-navy-700: #0b3f80;
+  --color-gold-300: #ffd866;
+  --color-gold-400: #ffc61a;
+  --color-gold-500: #f5b400;
+  --color-umber: #443712;
+}

@@ -1,0 +1,535 @@
+<div class="min-h-screen bg-navy-950 text-white font-sans antialiased selection:bg-gold-400 selection:text-navy-900">
+  <!-- Passcode Modal Gate -->
+  <div v-if="!isAuthenticated" class="fixed inset-0 z-50 grid place-items-center bg-navy-950/90 backdrop-blur-xl p-4">
+    <div class="w-full max-w-md rounded-3xl border border-white/10 bg-navy-900 p-8 shadow-2xl">
+      <div class="text-center">
+        <span class="grid size-12 place-items-center rounded-2xl bg-gold-400/10 text-xl font-bold text-gold-300 mx-auto">
+          🔒
+        </span>
+        <h2 class="mt-4 text-2xl font-bold text-white">Author & Job Studio</h2>
+        <p class="mt-2 text-xs text-white/60">
+          Enter admin passcode to author technical articles and manage tech job opportunities.
+        </p>
+      </div>
+
+      <form @submit.prevent="checkPasscode" class="mt-6 space-y-4">
+        <div>
+          <input
+            v-model="passcode"
+            type="password"
+            placeholder="Enter passcode..."
+            class="w-full rounded-2xl border border-white/15 bg-navy-950 px-4 py-3 text-sm text-white placeholder-white/40 focus:border-gold-400 focus:outline-none focus:ring-2 focus:ring-gold-400/40"
+            autofocus
+          />
+          <p v-if="authError" class="mt-2 text-xs text-rose-400">{{ authError }}</p>
+        </div>
+
+        <button
+          type="submit"
+          class="w-full rounded-2xl bg-gold-400 py-3 text-sm font-bold text-navy-900 transition hover:bg-gold-300 cursor-pointer shadow-lg shadow-gold-500/20"
+        >
+          Unlock Studio
+        </button>
+
+        <div class="text-center pt-2">
+          <router-link to="/blog" class="text-xs text-white/50 hover:text-white">
+            ← Return to Blog
+          </router-link>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Admin Workspace -->
+  <div v-else class="flex h-screen flex-col overflow-hidden">
+    <!-- Top Navigation & Action Bar -->
+    <header class="flex flex-wrap items-center justify-between border-b border-white/10 bg-navy-900/90 px-6 py-3">
+      <div class="flex items-center gap-4">
+        <router-link to="/blog" class="text-xs font-semibold text-white/60 hover:text-gold-300">
+          ← Blog
+        </router-link>
+        <span class="text-white/20">|</span>
+        <router-link to="/jobs" class="text-xs font-semibold text-white/60 hover:text-gold-300">
+          View Jobs ↗
+        </router-link>
+        <span class="text-white/20">|</span>
+        <span class="text-sm font-bold text-white tracking-wide">Studio</span>
+        <span class="rounded-full bg-emerald-500/20 px-2 py-0.5 text-[10px] font-semibold text-emerald-300">
+          Live & Persistent
+        </span>
+      </div>
+
+      <!-- Notification Banner -->
+      <div v-if="statusMessage" :class="['px-3 py-1 rounded-full text-xs font-medium', isError ? 'bg-rose-500/20 text-rose-300 border border-rose-500/30' : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30']">
+        {{ statusMessage }}
+      </div>
+
+      <!-- Action Buttons Contextual to activeTab -->
+      <div class="flex items-center gap-2">
+        <!-- Article Actions -->
+        <template v-if="activeTab === 'editor'">
+          <button
+            @click="createNewPost"
+            class="rounded-xl border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-semibold text-white/80 transition hover:bg-white/10 cursor-pointer"
+          >
+            + New Post
+          </button>
+          <button
+            @click="handleSave"
+            class="rounded-xl bg-gold-400 px-4 py-1.5 text-xs font-bold text-navy-900 shadow transition hover:bg-gold-300 active:scale-95 cursor-pointer"
+          >
+            Save Locally
+          </button>
+          <button
+            @click="handleGitHubPublish"
+            :disabled="isPublishing"
+            class="rounded-xl bg-emerald-500 px-4 py-1.5 text-xs font-bold text-navy-950 shadow transition hover:bg-emerald-400 disabled:opacity-50 cursor-pointer"
+            title="Commit to GitHub repository"
+          >
+            {{ isPublishing ? 'Pushing...' : 'Commit to GitHub' }}
+          </button>
+        </template>
+
+        <!-- Job Actions -->
+        <template v-else-if="activeTab === 'jobs'">
+          <button
+            @click="createNewJob"
+            class="rounded-xl border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-semibold text-white/80 transition hover:bg-white/10 cursor-pointer"
+          >
+            + New Job
+          </button>
+          <button
+            @click="testReferralLink"
+            class="rounded-xl border border-gold-400/30 bg-gold-400/10 px-3.5 py-1.5 text-xs font-semibold text-gold-300 transition hover:bg-gold-400 hover:text-navy-900 cursor-pointer"
+          >
+            Test Referral Link ↗
+          </button>
+          <button
+            @click="handleSaveJob"
+            class="rounded-xl bg-gold-400 px-4 py-1.5 text-xs font-bold text-navy-900 shadow transition hover:bg-gold-300 active:scale-95 cursor-pointer"
+          >
+            {{ selectedJobId ? 'Update Opportunity' : 'Publish Opportunity' }}
+          </button>
+        </template>
+      </div>
+    </header>
+
+    <!-- Main Layout: Sidebar + Studio Workspace -->
+    <div class="flex flex-1 overflow-hidden">
+      <!-- Sidebar: Tabs and Item Lists -->
+      <aside class="w-80 flex-shrink-0 border-r border-white/10 bg-navy-900/60 flex flex-col">
+        <!-- Sidebar Navigation Tabs -->
+        <div class="flex border-b border-white/10 text-xs">
+          <button
+            @click="activeTab = 'editor'"
+            :class="['flex-1 py-2.5 font-semibold text-center border-b-2 cursor-pointer transition', activeTab === 'editor' ? 'border-gold-400 text-gold-300 bg-white/5' : 'border-transparent text-white/50 hover:text-white']"
+          >
+            Articles ({{ posts.length }})
+          </button>
+          <button
+            @click="activeTab = 'jobs'"
+            :class="['flex-1 py-2.5 font-semibold text-center border-b-2 cursor-pointer transition', activeTab === 'jobs' ? 'border-gold-400 text-gold-300 bg-white/5' : 'border-transparent text-white/50 hover:text-white']"
+          >
+            Jobs ({{ jobs.length }})
+          </button>
+          <button
+            @click="activeTab = 'github'"
+            :class="['flex-1 py-2.5 font-semibold text-center border-b-2 cursor-pointer transition', activeTab === 'github' ? 'border-gold-400 text-gold-300 bg-white/5' : 'border-transparent text-white/50 hover:text-white']"
+          >
+            Sync
+          </button>
+        </div>
+
+        <!-- Tab 1: Articles List -->
+        <div v-if="activeTab === 'editor'" class="flex-1 overflow-y-auto p-3 space-y-1.5">
+          <button
+            v-for="p in posts"
+            :key="p.id"
+            @click="selectPost(p)"
+            :class="[
+              'w-full text-left rounded-xl p-3 transition duration-150 cursor-pointer',
+              selectedPostId === p.id
+                ? 'bg-gold-400/15 border border-gold-400/40 text-white'
+                : 'bg-navy-800/40 border border-transparent text-white/70 hover:bg-white/5 hover:text-white'
+            ]"
+          >
+            <div class="flex items-center justify-between text-[10px] text-white/40 mb-1">
+              <span>{{ p.category }}</span>
+              <span>{{ p.date }}</span>
+            </div>
+            <h4 class="text-xs font-bold truncate text-white">{{ p.title }}</h4>
+          </button>
+        </div>
+
+        <!-- Tab 2: Tech Jobs List -->
+        <div v-else-if="activeTab === 'jobs'" class="flex-1 overflow-y-auto p-3 space-y-1.5">
+          <button
+            v-for="j in jobs"
+            :key="j.id"
+            @click="selectJob(j)"
+            :class="[
+              'w-full text-left rounded-xl p-3 transition duration-150 cursor-pointer',
+              selectedJobId === j.id
+                ? 'bg-gold-400/15 border border-gold-400/40 text-white'
+                : 'bg-navy-800/40 border border-transparent text-white/70 hover:bg-white/5 hover:text-white'
+            ]"
+          >
+            <div class="flex items-center justify-between text-[10px] text-white/40 mb-1">
+              <span class="font-bold text-gold-300 uppercase">{{ j.workplaceType }}</span>
+              <span>{{ j.employmentType }}</span>
+            </div>
+            <h4 class="text-xs font-bold truncate text-white">{{ j.title }}</h4>
+            <p class="text-[11px] text-white/50 truncate mt-0.5">{{ j.company }} • {{ j.location }}</p>
+          </button>
+        </div>
+
+        <!-- Tab 3: GitHub Settings -->
+        <div v-else class="flex-1 overflow-y-auto p-4 space-y-4 text-xs">
+          <p class="text-white/70">
+            Configure your GitHub Personal Access Token to commit articles and job data directly to your repository.
+          </p>
+          <div>
+            <label class="block font-semibold text-white/60 mb-1">Repository Owner</label>
+            <input
+              v-model="ghConfig.owner"
+              type="text"
+              class="w-full rounded-lg border border-white/15 bg-navy-950 px-3 py-2 text-white"
+            />
+          </div>
+          <div>
+            <label class="block font-semibold text-white/60 mb-1">Repository Name</label>
+            <input
+              v-model="ghConfig.repo"
+              type="text"
+              class="w-full rounded-lg border border-white/15 bg-navy-950 px-3 py-2 text-white"
+            />
+          </div>
+          <div>
+            <label class="block font-semibold text-white/60 mb-1">Target Branch</label>
+            <input
+              v-model="ghConfig.branch"
+              type="text"
+              class="w-full rounded-lg border border-white/15 bg-navy-950 px-3 py-2 text-white"
+            />
+          </div>
+          <div>
+            <label class="block font-semibold text-white/60 mb-1">Personal Access Token (PAT)</label>
+            <input
+              v-model="ghConfig.token"
+              type="password"
+              placeholder="ghp_..."
+              class="w-full rounded-lg border border-white/15 bg-navy-950 px-3 py-2 text-white"
+            />
+            <span class="mt-1 block text-[10px] text-white/40">Stored securely in your browser's local storage.</span>
+          </div>
+          <button
+            @click="saveGhSettings"
+            class="w-full rounded-lg bg-gold-400 py-2 font-bold text-navy-900 cursor-pointer"
+          >
+            Save Settings
+          </button>
+        </div>
+
+        <!-- Sidebar Footer Actions -->
+        <div class="border-t border-white/10 p-3 flex items-center justify-between text-xs">
+          <template v-if="activeTab === 'editor'">
+            <button
+              @click="downloadMarkdown"
+              class="text-white/60 hover:text-gold-300 cursor-pointer"
+              title="Download .md file"
+            >
+              📥 Export .md
+            </button>
+            <button
+              @click="handleDelete(form.id)"
+              class="text-rose-400 hover:text-rose-300 cursor-pointer"
+              title="Delete current post"
+            >
+              🗑 Delete
+            </button>
+            <button
+              @click="resetPosts"
+              class="text-white/40 hover:text-white cursor-pointer"
+              title="Reset seed articles"
+            >
+              ↺ Reset
+            </button>
+          </template>
+          <template v-else-if="activeTab === 'jobs'">
+            <button
+              v-if="selectedJobId"
+              @click="handleDeleteJob(selectedJobId)"
+              class="text-rose-400 hover:text-rose-300 cursor-pointer"
+            >
+              🗑 Remove Job
+            </button>
+            <button
+              @click="resetJobs"
+              class="text-white/40 hover:text-white cursor-pointer ml-auto"
+              title="Reset initial tech jobs"
+            >
+              ↺ Reset Jobs
+            </button>
+          </template>
+        </div>
+      </aside>
+
+      <!-- Main Workspace Area -->
+      <!-- Workspace 1: Articles Markdown Editor -->
+      <div v-if="activeTab === 'editor'" class="flex-1 flex flex-col overflow-hidden bg-navy-950">
+        <!-- Meta Inputs Bar -->
+        <div class="border-b border-white/10 bg-navy-900/50 p-4 space-y-3">
+          <div class="flex flex-col sm:flex-row gap-3">
+            <input
+              v-model="form.title"
+              type="text"
+              placeholder="Article Title..."
+              class="flex-1 rounded-xl border border-white/15 bg-navy-950/80 px-4 py-2.5 text-base font-bold text-white focus:border-gold-400 focus:outline-none"
+            />
+            <div class="flex items-center gap-2">
+              <input
+                v-model="form.category"
+                type="text"
+                placeholder="Category (e.g. CI/CD Security)"
+                class="w-44 rounded-xl border border-white/15 bg-navy-950/80 px-3 py-2.5 text-xs text-white focus:border-gold-400 focus:outline-none"
+              />
+              <input
+                v-model="form.tags"
+                type="text"
+                placeholder="Tags (comma-separated)"
+                class="w-48 rounded-xl border border-white/15 bg-navy-950/80 px-3 py-2.5 text-xs text-white focus:border-gold-400 focus:outline-none"
+              />
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between text-xs text-white/50">
+            <div class="flex items-center gap-4">
+              <span>Slug: <strong class="text-white/80 font-mono">/blog/{{ form.slug }}</strong></span>
+              <label class="flex items-center gap-1.5 cursor-pointer">
+                <input type="checkbox" v-model="form.featured" class="rounded text-gold-400" />
+                <span class="text-white/70">Featured Post</span>
+              </label>
+            </div>
+
+            <!-- View Mode Toggles -->
+            <div class="flex items-center rounded-lg border border-white/10 bg-navy-900 p-0.5">
+              <button
+                @click="viewMode = 'edit'"
+                :class="['px-2.5 py-1 rounded text-xs cursor-pointer', viewMode === 'edit' ? 'bg-gold-400 text-navy-900 font-bold' : 'text-white/60 hover:text-white']"
+              >
+                Editor
+              </button>
+              <button
+                @click="viewMode = 'split'"
+                :class="['px-2.5 py-1 rounded text-xs cursor-pointer', viewMode === 'split' ? 'bg-gold-400 text-navy-900 font-bold' : 'text-white/60 hover:text-white']"
+              >
+                Split
+              </button>
+              <button
+                @click="viewMode = 'preview'"
+                :class="['px-2.5 py-1 rounded text-xs cursor-pointer', viewMode === 'preview' ? 'bg-gold-400 text-navy-900 font-bold' : 'text-white/60 hover:text-white']"
+              >
+                Preview
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Markdown Editor / Preview Workspace -->
+        <div class="flex-1 flex overflow-hidden">
+          <div
+            v-show="viewMode === 'edit' || viewMode === 'split'"
+            :class="['h-full flex flex-col', viewMode === 'split' ? 'w-1/2 border-r border-white/10' : 'w-full']"
+          >
+            <textarea
+              v-model="form.content"
+              placeholder="Write your article in Markdown format..."
+              class="flex-1 w-full resize-none border-none bg-transparent p-6 font-mono text-sm leading-relaxed text-white/90 placeholder-white/30 focus:outline-none selection:bg-gold-400 selection:text-navy-900"
+            />
+          </div>
+
+          <div
+            v-show="viewMode === 'preview' || viewMode === 'split'"
+            :class="['h-full overflow-y-auto p-8 bg-navy-900/40', viewMode === 'split' ? 'w-1/2' : 'w-full max-w-4xl mx-auto']"
+          >
+            <div class="prose prose-invert prose-gold max-w-none" v-html="previewHtml" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Workspace 2: Tech Job Opportunities Manager -->
+      <div v-else-if="activeTab === 'jobs'" class="flex-1 flex flex-col overflow-y-auto bg-navy-950 p-6 sm:p-8">
+        <div class="max-w-4xl mx-auto w-full space-y-6">
+          <div class="flex items-center justify-between border-b border-white/10 pb-4">
+            <div>
+              <h2 class="text-xl font-bold text-white">
+                {{ selectedJobId ? 'Edit Job Opportunity' : 'Post New Job Opportunity' }}
+              </h2>
+              <p class="text-xs text-white/60 mt-1">
+                When candidates click this card on the site, their browser automatically opens the referral link in a new tab.
+              </p>
+            </div>
+            <button
+              v-if="selectedJobId"
+              @click="createNewJob"
+              class="rounded-xl border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-semibold text-white/80 hover:bg-white/10"
+            >
+              + Create Another Role
+            </button>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <!-- Job Title -->
+            <div class="md:col-span-2">
+              <label class="block text-xs font-semibold text-white/80 mb-1.5">Job Title *</label>
+              <input
+                v-model="jobForm.title"
+                type="text"
+                placeholder="e.g. Lead DevSecOps Architect"
+                class="w-full rounded-xl border border-white/15 bg-navy-900 px-4 py-2.5 text-sm text-white focus:border-gold-400 focus:outline-none"
+              />
+            </div>
+
+            <!-- Company -->
+            <div>
+              <label class="block text-xs font-semibold text-white/80 mb-1.5">Company / Organization *</label>
+              <input
+                v-model="jobForm.company"
+                type="text"
+                placeholder="e.g. CloudNative Scaleup"
+                class="w-full rounded-xl border border-white/15 bg-navy-900 px-4 py-2.5 text-sm text-white focus:border-gold-400 focus:outline-none"
+              />
+            </div>
+
+            <!-- Location -->
+            <div>
+              <label class="block text-xs font-semibold text-white/80 mb-1.5">Location</label>
+              <input
+                v-model="jobForm.location"
+                type="text"
+                placeholder="e.g. Remote (Global), London UK, etc."
+                class="w-full rounded-xl border border-white/15 bg-navy-900 px-4 py-2.5 text-sm text-white focus:border-gold-400 focus:outline-none"
+              />
+            </div>
+
+            <!-- Workplace Type -->
+            <div>
+              <label class="block text-xs font-semibold text-white/80 mb-1.5">Workplace Policy *</label>
+              <select
+                v-model="jobForm.workplaceType"
+                class="w-full rounded-xl border border-white/15 bg-navy-900 px-4 py-2.5 text-sm text-white focus:border-gold-400 focus:outline-none cursor-pointer"
+              >
+                <option value="remote">Remote 🌐</option>
+                <option value="hybrid">Hybrid 🏢</option>
+                <option value="in-office">In-Office 📍</option>
+              </select>
+            </div>
+
+            <!-- Employment Type -->
+            <div>
+              <label class="block text-xs font-semibold text-white/80 mb-1.5">Employment Type *</label>
+              <select
+                v-model="jobForm.employmentType"
+                class="w-full rounded-xl border border-white/15 bg-navy-900 px-4 py-2.5 text-sm text-white focus:border-gold-400 focus:outline-none cursor-pointer"
+              >
+                <option value="full-time">Full-Time</option>
+                <option value="contract">Contract / Freelance</option>
+                <option value="part-time">Part-Time</option>
+              </select>
+            </div>
+
+            <!-- Salary Range -->
+            <div>
+              <label class="block text-xs font-semibold text-white/80 mb-1.5">Salary / Compensation (Optional)</label>
+              <input
+                v-model="jobForm.salaryRange"
+                type="text"
+                placeholder="e.g. $150,000 - $190,000 / yr"
+                class="w-full rounded-xl border border-white/15 bg-navy-900 px-4 py-2.5 text-sm text-white focus:border-gold-400 focus:outline-none"
+              />
+            </div>
+
+            <!-- Featured Toggle -->
+            <div class="flex items-center pt-6">
+              <label class="flex items-center gap-2 cursor-pointer text-xs font-semibold text-white/80">
+                <input type="checkbox" v-model="jobForm.featured" class="rounded text-gold-400 size-4" />
+                <span>Mark as Featured Opportunity (Highlighted glow)</span>
+              </label>
+            </div>
+
+            <!-- Referral Link -->
+            <div class="md:col-span-2">
+              <div class="flex items-center justify-between mb-1.5">
+                <label class="block text-xs font-semibold text-gold-300">
+                  Referral Link (Opens behind card on click in new tab) *
+                </label>
+                <button
+                  type="button"
+                  @click="testReferralLink"
+                  class="text-[11px] text-gold-400 hover:text-gold-300 underline cursor-pointer"
+                >
+                  Test Link ↗
+                </button>
+              </div>
+              <input
+                v-model="jobForm.referralLink"
+                type="url"
+                placeholder="https://company.com/jobs/apply?ref=didier or LinkedIn referral link..."
+                class="w-full rounded-xl border border-gold-400/40 bg-navy-900 px-4 py-2.5 text-sm text-white font-mono placeholder-white/30 focus:border-gold-400 focus:outline-none"
+              />
+            </div>
+
+            <!-- Tags -->
+            <div class="md:col-span-2">
+              <label class="block text-xs font-semibold text-white/80 mb-1.5">Tech Tags (comma-separated)</label>
+              <input
+                v-model="jobForm.tags"
+                type="text"
+                placeholder="e.g. Kubernetes, Terraform, AWS, Zero-Trust, OIDC"
+                class="w-full rounded-xl border border-white/15 bg-navy-900 px-4 py-2.5 text-sm text-white focus:border-gold-400 focus:outline-none"
+              />
+            </div>
+
+            <!-- Description -->
+            <div class="md:col-span-2">
+              <label class="block text-xs font-semibold text-white/80 mb-1.5">Role Summary & Key Details</label>
+              <textarea
+                v-model="jobForm.description"
+                rows="4"
+                placeholder="Describe the mission, core technologies, and expectations..."
+                class="w-full rounded-xl border border-white/15 bg-navy-900 p-4 text-sm text-white placeholder-white/30 focus:border-gold-400 focus:outline-none resize-y"
+              />
+            </div>
+          </div>
+
+          <!-- Bottom Actions -->
+          <div class="flex items-center justify-between pt-4 border-t border-white/10">
+            <span class="text-xs text-white/40">
+              Changes persist instantly to local storage and sync across all tabs in realtime.
+            </span>
+            <div class="flex items-center gap-3">
+              <button
+                type="button"
+                @click="handleSaveJob"
+                class="rounded-xl bg-gold-400 px-6 py-2.5 text-xs font-bold text-navy-950 shadow-md transition hover:bg-gold-300 cursor-pointer"
+              >
+                {{ selectedJobId ? 'Save Changes' : 'Publish Opportunity' }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Workspace 3: Settings/Sync Placeholder -->
+      <div v-else class="flex-1 grid place-items-center bg-navy-950 p-8 text-center">
+        <div class="max-w-md">
+          <span class="text-4xl">🔄</span>
+          <h3 class="mt-4 text-lg font-bold text-white">Repository Synchronization</h3>
+          <p class="mt-2 text-xs text-white/60">
+            Use the left sidebar to configure your GitHub token or export your Markdown files locally.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
