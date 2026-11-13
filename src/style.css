@@ -8,6 +8,7 @@
   /* Futura first (when installed, e.g. macOS), then Jost — a free geometric Futura revival. */
   --font-sans: "Futura", "Futura PT", "Jost", ui-sans-serif, system-ui, sans-serif;
 
+  --color-navy-950: #000f24;
   --color-navy-900: #001a3d;
   --color-navy-800: #002e66;
   --color-navy-700: #0b3f80;

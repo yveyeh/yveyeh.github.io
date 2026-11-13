@@ -1,4 +1,4 @@
-<div class="min-h-screen bg-navy-950 text-white font-sans antialiased selection:bg-gold-400 selection:text-navy-900">
+<div class="min-h-screen bg-navy-900 text-white font-sans antialiased selection:bg-gold-400 selection:text-navy-900">
   <!-- Passcode Modal Gate -->
   <div v-if="!isAuthenticated" class="fixed inset-0 z-50 grid place-items-center bg-navy-950/90 backdrop-blur-xl p-4">
     <div class="w-full max-w-md rounded-3xl border border-white/10 bg-navy-900 p-8 shadow-2xl">
@@ -8,7 +8,7 @@
         </span>
         <h2 class="mt-4 text-2xl font-bold text-white">Author & Job Studio</h2>
         <p class="mt-2 text-xs text-white/60">
-          Enter admin passcode to author technical articles and manage tech job opportunities.
+          Enter admin passcode to manage technical articles and job opportunities in the MySQL database.
         </p>
       </div>
 
@@ -22,11 +22,13 @@
             autofocus
           />
           <p v-if="authError" class="mt-2 text-xs text-rose-400">{{ authError }}</p>
+          <p v-if="lockoutMessage" class="mt-2 text-xs text-amber-400 font-semibold">{{ lockoutMessage }}</p>
         </div>
 
         <button
           type="submit"
-          class="w-full rounded-2xl bg-gold-400 py-3 text-sm font-bold text-navy-900 transition hover:bg-gold-300 cursor-pointer shadow-lg shadow-gold-500/20"
+          :disabled="lockoutUntil > Date.now()"
+          class="w-full rounded-2xl bg-gold-400 py-3 text-sm font-bold text-navy-900 transition hover:bg-gold-300 cursor-pointer shadow-lg shadow-gold-500/20 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Unlock Studio
         </button>
@@ -54,18 +56,39 @@
         </router-link>
         <span class="text-white/20">|</span>
         <span class="text-sm font-bold text-white tracking-wide">Studio</span>
-        <span class="rounded-full bg-emerald-500/20 px-2 py-0.5 text-[10px] font-semibold text-emerald-300">
-          Live & Persistent
+        <span
+          :class="[
+            'inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[10px] font-semibold',
+            backendConnected ? 'bg-emerald-500/20 text-emerald-300' : 'bg-amber-500/20 text-amber-300'
+          ]"
+        >
+          <span :class="['size-1.5 rounded-full', backendConnected ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400']"></span>
+          {{ backendConnected ? 'Flask + MySQL Connected' : 'Offline Mode' }}
         </span>
       </div>
 
       <!-- Notification Banner -->
-      <div v-if="statusMessage" :class="['px-3 py-1 rounded-full text-xs font-medium', isError ? 'bg-rose-500/20 text-rose-300 border border-rose-500/30' : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30']">
+      <div
+        v-if="statusMessage"
+        :class="[
+          'px-3 py-1 rounded-full text-xs font-medium',
+          isError ? 'bg-rose-500/20 text-rose-300 border border-rose-500/30' : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
+        ]"
+      >
         {{ statusMessage }}
       </div>
 
       <!-- Action Buttons Contextual to activeTab -->
       <div class="flex items-center gap-2">
+        <button
+          @click="logout"
+          class="rounded-xl border border-rose-500/30 bg-rose-500/10 px-3 py-1.5 text-xs font-semibold text-rose-400 transition hover:bg-rose-500/20 hover:text-rose-300 cursor-pointer"
+          title="Sign out of Admin Studio"
+        >
+          🔓 Sign Out
+        </button>
+        <span class="text-white/20">|</span>
+
         <!-- Article Actions -->
         <template v-if="activeTab === 'editor'">
           <button
@@ -76,17 +99,10 @@
           </button>
           <button
             @click="handleSave"
-            class="rounded-xl bg-gold-400 px-4 py-1.5 text-xs font-bold text-navy-900 shadow transition hover:bg-gold-300 active:scale-95 cursor-pointer"
+            :disabled="isSaving"
+            class="rounded-xl bg-gold-400 px-4 py-1.5 text-xs font-bold text-navy-900 shadow transition hover:bg-gold-300 active:scale-95 disabled:opacity-50 cursor-pointer"
           >
-            Save Locally
-          </button>
-          <button
-            @click="handleGitHubPublish"
-            :disabled="isPublishing"
-            class="rounded-xl bg-emerald-500 px-4 py-1.5 text-xs font-bold text-navy-950 shadow transition hover:bg-emerald-400 disabled:opacity-50 cursor-pointer"
-            title="Commit to GitHub repository"
-          >
-            {{ isPublishing ? 'Pushing...' : 'Commit to GitHub' }}
+            {{ isSaving ? 'Saving...' : 'Save to MySQL' }}
           </button>
         </template>
 
@@ -106,9 +122,20 @@
           </button>
           <button
             @click="handleSaveJob"
-            class="rounded-xl bg-gold-400 px-4 py-1.5 text-xs font-bold text-navy-900 shadow transition hover:bg-gold-300 active:scale-95 cursor-pointer"
+            :disabled="isSaving"
+            class="rounded-xl bg-gold-400 px-4 py-1.5 text-xs font-bold text-navy-900 shadow transition hover:bg-gold-300 active:scale-95 disabled:opacity-50 cursor-pointer"
           >
-            {{ selectedJobId ? 'Update Opportunity' : 'Publish Opportunity' }}
+            {{ selectedJobId ? 'Update in MySQL' : 'Publish to MySQL' }}
+          </button>
+        </template>
+
+        <!-- Database Actions -->
+        <template v-else>
+          <button
+            @click="refreshDatabase"
+            class="rounded-xl bg-gold-400 px-4 py-1.5 text-xs font-bold text-navy-900 shadow transition hover:bg-gold-300 cursor-pointer"
+          >
+            ↻ Sync Database
           </button>
         </template>
       </div>
@@ -133,10 +160,10 @@
             Jobs ({{ jobs.length }})
           </button>
           <button
-            @click="activeTab = 'github'"
-            :class="['flex-1 py-2.5 font-semibold text-center border-b-2 cursor-pointer transition', activeTab === 'github' ? 'border-gold-400 text-gold-300 bg-white/5' : 'border-transparent text-white/50 hover:text-white']"
+            @click="activeTab = 'database'"
+            :class="['flex-1 py-2.5 font-semibold text-center border-b-2 cursor-pointer transition', activeTab === 'database' ? 'border-gold-400 text-gold-300 bg-white/5' : 'border-transparent text-white/50 hover:text-white']"
           >
-            Sync
+            MySQL DB
           </button>
         </div>
 
@@ -183,50 +210,32 @@
           </button>
         </div>
 
-        <!-- Tab 3: GitHub Settings -->
+        <!-- Tab 3: MySQL Backend Info -->
         <div v-else class="flex-1 overflow-y-auto p-4 space-y-4 text-xs">
-          <p class="text-white/70">
-            Configure your GitHub Personal Access Token to commit articles and job data directly to your repository.
+          <div class="rounded-2xl border border-white/10 bg-navy-800/50 p-4 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-white/60">Status</span>
+              <span class="font-bold text-emerald-400">{{ backendHealth?.status === 'ok' ? 'Connected' : 'Checking...' }}</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-white/60">Engine</span>
+              <span class="font-mono text-gold-300 uppercase">{{ backendHealth?.engine || 'MySQL' }}</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-white/60">Schema</span>
+              <span class="font-mono text-white/90">{{ backendHealth?.database || 'yveyeh_portfolio' }}</span>
+            </div>
+          </div>
+
+          <p class="text-white/60 leading-relaxed">
+            All articles, job opportunities, reader comments, view counters, and reactions are persisted in the Flask + MySQL backend.
           </p>
-          <div>
-            <label class="block font-semibold text-white/60 mb-1">Repository Owner</label>
-            <input
-              v-model="ghConfig.owner"
-              type="text"
-              class="w-full rounded-lg border border-white/15 bg-navy-950 px-3 py-2 text-white"
-            />
-          </div>
-          <div>
-            <label class="block font-semibold text-white/60 mb-1">Repository Name</label>
-            <input
-              v-model="ghConfig.repo"
-              type="text"
-              class="w-full rounded-lg border border-white/15 bg-navy-950 px-3 py-2 text-white"
-            />
-          </div>
-          <div>
-            <label class="block font-semibold text-white/60 mb-1">Target Branch</label>
-            <input
-              v-model="ghConfig.branch"
-              type="text"
-              class="w-full rounded-lg border border-white/15 bg-navy-950 px-3 py-2 text-white"
-            />
-          </div>
-          <div>
-            <label class="block font-semibold text-white/60 mb-1">Personal Access Token (PAT)</label>
-            <input
-              v-model="ghConfig.token"
-              type="password"
-              placeholder="ghp_..."
-              class="w-full rounded-lg border border-white/15 bg-navy-950 px-3 py-2 text-white"
-            />
-            <span class="mt-1 block text-[10px] text-white/40">Stored securely in your browser's local storage.</span>
-          </div>
+
           <button
-            @click="saveGhSettings"
-            class="w-full rounded-lg bg-gold-400 py-2 font-bold text-navy-900 cursor-pointer"
+            @click="refreshDatabase"
+            class="w-full rounded-xl bg-gold-400 py-2.5 font-bold text-navy-900 cursor-pointer transition hover:bg-gold-300"
           >
-            Save Settings
+            Refresh Database Stats
           </button>
         </div>
 
@@ -248,9 +257,9 @@
               🗑 Delete
             </button>
             <button
-              @click="resetPosts"
+              @click="handleResetPosts"
               class="text-white/40 hover:text-white cursor-pointer"
-              title="Reset seed articles"
+              title="Reset seed articles in MySQL"
             >
               ↺ Reset
             </button>
@@ -264,9 +273,9 @@
               🗑 Remove Job
             </button>
             <button
-              @click="resetJobs"
+              @click="handleResetJobs"
               class="text-white/40 hover:text-white cursor-pointer ml-auto"
-              title="Reset initial tech jobs"
+              title="Reset initial tech jobs in MySQL"
             >
               ↺ Reset Jobs
             </button>
@@ -274,7 +283,6 @@
         </div>
       </aside>
 
-      <!-- Main Workspace Area -->
       <!-- Workspace 1: Articles Markdown Editor -->
       <div v-if="activeTab === 'editor'" class="flex-1 flex flex-col overflow-hidden bg-navy-950">
         <!-- Meta Inputs Bar -->
@@ -300,6 +308,15 @@
                 class="w-48 rounded-xl border border-white/15 bg-navy-950/80 px-3 py-2.5 text-xs text-white focus:border-gold-400 focus:outline-none"
               />
             </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-3">
+            <input
+              v-model="form.summary"
+              type="text"
+              placeholder="Brief article summary / abstract..."
+              class="flex-1 rounded-xl border border-white/15 bg-navy-950/80 px-3 py-2 text-xs text-white/90 focus:border-gold-400 focus:outline-none"
+            />
           </div>
 
           <div class="flex items-center justify-between text-xs text-white/50">
@@ -366,20 +383,19 @@
                 {{ selectedJobId ? 'Edit Job Opportunity' : 'Post New Job Opportunity' }}
               </h2>
               <p class="text-xs text-white/60 mt-1">
-                When candidates click this card on the site, their browser automatically opens the referral link in a new tab.
+                Stored in MySQL (`tech_jobs`). Clicking this card on `/jobs` opens the referral link in a new tab.
               </p>
             </div>
             <button
               v-if="selectedJobId"
               @click="createNewJob"
-              class="rounded-xl border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-semibold text-white/80 hover:bg-white/10"
+              class="rounded-xl border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-semibold text-white/80 hover:bg-white/10 cursor-pointer"
             >
               + Create Another Role
             </button>
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <!-- Job Title -->
             <div class="md:col-span-2">
               <label class="block text-xs font-semibold text-white/80 mb-1.5">Job Title *</label>
               <input
@@ -390,7 +406,6 @@
               />
             </div>
 
-            <!-- Company -->
             <div>
               <label class="block text-xs font-semibold text-white/80 mb-1.5">Company / Organization *</label>
               <input
@@ -401,7 +416,6 @@
               />
             </div>
 
-            <!-- Location -->
             <div>
               <label class="block text-xs font-semibold text-white/80 mb-1.5">Location</label>
               <input
@@ -412,7 +426,6 @@
               />
             </div>
 
-            <!-- Workplace Type -->
             <div>
               <label class="block text-xs font-semibold text-white/80 mb-1.5">Workplace Policy *</label>
               <select
@@ -425,7 +438,6 @@
               </select>
             </div>
 
-            <!-- Employment Type -->
             <div>
               <label class="block text-xs font-semibold text-white/80 mb-1.5">Employment Type *</label>
               <select
@@ -438,7 +450,6 @@
               </select>
             </div>
 
-            <!-- Salary Range -->
             <div>
               <label class="block text-xs font-semibold text-white/80 mb-1.5">Salary / Compensation (Optional)</label>
               <input
@@ -449,19 +460,17 @@
               />
             </div>
 
-            <!-- Featured Toggle -->
             <div class="flex items-center pt-6">
               <label class="flex items-center gap-2 cursor-pointer text-xs font-semibold text-white/80">
                 <input type="checkbox" v-model="jobForm.featured" class="rounded text-gold-400 size-4" />
-                <span>Mark as Featured Opportunity (Highlighted glow)</span>
+                <span>Mark as Featured Opportunity (Spotlight banner)</span>
               </label>
             </div>
 
-            <!-- Referral Link -->
             <div class="md:col-span-2">
               <div class="flex items-center justify-between mb-1.5">
                 <label class="block text-xs font-semibold text-gold-300">
-                  Referral Link (Opens behind card on click in new tab) *
+                  Referral Link (Opens on card click in new tab) *
                 </label>
                 <button
                   type="button"
@@ -479,7 +488,6 @@
               />
             </div>
 
-            <!-- Tags -->
             <div class="md:col-span-2">
               <label class="block text-xs font-semibold text-white/80 mb-1.5">Tech Tags (comma-separated)</label>
               <input
@@ -490,7 +498,6 @@
               />
             </div>
 
-            <!-- Description -->
             <div class="md:col-span-2">
               <label class="block text-xs font-semibold text-white/80 mb-1.5">Role Summary & Key Details</label>
               <textarea
@@ -502,32 +509,76 @@
             </div>
           </div>
 
-          <!-- Bottom Actions -->
           <div class="flex items-center justify-between pt-4 border-t border-white/10">
             <span class="text-xs text-white/40">
-              Changes persist instantly to local storage and sync across all tabs in realtime.
+              All changes are saved directly to the MySQL backend database.
             </span>
             <div class="flex items-center gap-3">
               <button
                 type="button"
                 @click="handleSaveJob"
+                :disabled="isSaving"
                 class="rounded-xl bg-gold-400 px-6 py-2.5 text-xs font-bold text-navy-950 shadow-md transition hover:bg-gold-300 cursor-pointer"
               >
-                {{ selectedJobId ? 'Save Changes' : 'Publish Opportunity' }}
+                {{ selectedJobId ? 'Save Changes to MySQL' : 'Publish Opportunity to MySQL' }}
               </button>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Workspace 3: Settings/Sync Placeholder -->
-      <div v-else class="flex-1 grid place-items-center bg-navy-950 p-8 text-center">
-        <div class="max-w-md">
-          <span class="text-4xl">🔄</span>
-          <h3 class="mt-4 text-lg font-bold text-white">Repository Synchronization</h3>
-          <p class="mt-2 text-xs text-white/60">
-            Use the left sidebar to configure your GitHub token or export your Markdown files locally.
-          </p>
+      <!-- Workspace 3: MySQL Backend Overview -->
+      <div v-else class="flex-1 overflow-y-auto bg-navy-950 p-8">
+        <div class="max-w-3xl mx-auto space-y-8">
+          <div>
+            <h2 class="text-2xl font-bold text-white">Flask + MySQL Backend Overview</h2>
+            <p class="mt-1 text-sm text-white/60">
+              Live database telemetry and table row counts from your Flask REST API (`/api/health`).
+            </p>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div class="rounded-2xl border border-white/10 bg-navy-900 p-5">
+              <span class="text-xs uppercase tracking-wider text-white/50">Blog Posts</span>
+              <p class="mt-2 text-3xl font-extrabold text-gold-400">{{ backendHealth?.counts?.posts ?? posts.length }}</p>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-navy-900 p-5">
+              <span class="text-xs uppercase tracking-wider text-white/50">Tech Jobs</span>
+              <p class="mt-2 text-3xl font-extrabold text-emerald-400">{{ backendHealth?.counts?.jobs ?? jobs.length }}</p>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-navy-900 p-5">
+              <span class="text-xs uppercase tracking-wider text-white/50">Comments</span>
+              <p class="mt-2 text-3xl font-extrabold text-white">{{ backendHealth?.counts?.comments ?? 0 }}</p>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-navy-900 p-5">
+              <span class="text-xs uppercase tracking-wider text-white/50">Social Links</span>
+              <p class="mt-2 text-3xl font-extrabold text-white">{{ backendHealth?.counts?.socials ?? 9 }}</p>
+            </div>
+          </div>
+
+          <div class="rounded-3xl border border-white/10 bg-navy-900/70 p-6 space-y-4">
+            <h3 class="text-base font-bold text-white">REST API Endpoints</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono">
+              <div class="rounded-xl bg-navy-950 p-3 border border-white/5">
+                <span class="text-emerald-400 font-bold">GET / POST</span> <span class="text-white/80">/api/posts</span>
+              </div>
+              <div class="rounded-xl bg-navy-950 p-3 border border-white/5">
+                <span class="text-gold-400 font-bold">PUT / DELETE</span> <span class="text-white/80">/api/posts/:slug</span>
+              </div>
+              <div class="rounded-xl bg-navy-950 p-3 border border-white/5">
+                <span class="text-emerald-400 font-bold">GET / POST</span> <span class="text-white/80">/api/jobs</span>
+              </div>
+              <div class="rounded-xl bg-navy-950 p-3 border border-white/5">
+                <span class="text-gold-400 font-bold">PUT / DELETE</span> <span class="text-white/80">/api/jobs/:id</span>
+              </div>
+              <div class="rounded-xl bg-navy-950 p-3 border border-white/5">
+                <span class="text-emerald-400 font-bold">GET / POST</span> <span class="text-white/80">/api/posts/:slug/interactions</span>
+              </div>
+              <div class="rounded-xl bg-navy-950 p-3 border border-white/5">
+                <span class="text-emerald-400 font-bold">GET / PUT</span> <span class="text-white/80">/api/profile</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -1,114 +1,223 @@
-<div class="min-h-screen bg-navy-950 text-white selection:bg-gold-400 selection:text-navy-950 font-sans relative overflow-x-hidden">
-  <!-- Nine-dot Apps Launcher -->
+<div class="min-h-screen bg-navy-900 text-white font-sans antialiased selection:bg-gold-400 selection:text-navy-900">
   <AppsLauncher />
 
-  <!-- Background decorative glows -->
-  <div class="pointer-events-none fixed inset-0 overflow-hidden">
-    <div class="absolute -top-40 -left-40 size-96 rounded-full bg-navy-800/50 blur-3xl" />
-    <div class="absolute top-1/3 -right-40 size-96 rounded-full bg-gold-400/10 blur-3xl" />
-    <div class="absolute -bottom-40 left-1/3 size-96 rounded-full bg-blue-600/10 blur-3xl" />
-  </div>
-
-  <main class="relative z-10 mx-auto max-w-6xl px-4 pt-10 pb-20 sm:px-6 lg:px-8">
-    <!-- Top Navigation Breadcrumbs -->
-    <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs font-medium text-white/50">
-      <router-link to="/" class="hover:text-white transition">Home</router-link>
-      <span>/</span>
-      <router-link to="/blog" class="hover:text-white transition">Blog</router-link>
-      <span>/</span>
-      <span class="text-gold-400 font-semibold">Tech Opportunities</span>
-    </nav>
-
-    <!-- Header Section -->
-    <div class="mt-8 flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-white/10">
-      <div class="max-w-2xl">
-        <div class="inline-flex items-center gap-2 rounded-full border border-gold-400/30 bg-gold-400/10 px-3 py-1 text-xs font-semibold text-gold-300">
-          <span class="size-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          Direct Referral Network
+  <!-- Navigation Header -->
+  <header class="sticky top-0 z-40 border-b border-white/10 bg-navy-900/80 backdrop-blur-md">
+    <div class="mx-auto flex max-w-7xl items-center justify-between pl-6 pr-20 sm:pr-24 py-4">
+      <router-link to="/" class="group flex items-center gap-3">
+        <img
+          src="/assets/img/didier-headshot.jpg"
+          alt="Didier Yufenyuy Veyeh"
+          class="size-10 rounded-full border border-gold-400/80 object-cover shadow-sm transition duration-300 group-hover:scale-105"
+        />
+        <div>
+          <span class="block text-sm font-bold tracking-wider text-white">Didier Y. Veyeh</span>
+          <span class="block text-[11px] font-medium tracking-widest text-gold-400 uppercase">DevSecOps Architect</span>
         </div>
-        <h1 class="mt-4 text-3xl font-extrabold tracking-tight text-white sm:text-5xl">
-          Tech Job Opportunities
-        </h1>
-        <p class="mt-3 text-base font-light text-white/70 sm:text-lg leading-relaxed">
-          Curated DevSecOps, Cloud Architecture, Platform Engineering, and SRE roles. Click any card to apply through an authentic direct referral link in a new tab.
-        </p>
-      </div>
+      </router-link>
 
-      <div class="flex items-center gap-3">
+      <nav class="flex items-center gap-3 sm:gap-5">
+        <router-link
+          to="/"
+          class="text-xs font-semibold uppercase tracking-wider text-white/70 transition hover:text-gold-300"
+        >
+          ← Home
+        </router-link>
+        <router-link
+          to="/blog"
+          class="text-xs font-semibold uppercase tracking-wider text-white/70 transition hover:text-gold-300"
+        >
+          Technical Blog
+        </router-link>
         <router-link
           to="/admin"
-          class="inline-flex items-center gap-2 rounded-2xl border border-white/15 bg-white/5 px-4 py-2.5 text-xs font-semibold text-white/80 transition hover:bg-white/10 hover:text-white"
+          class="inline-flex items-center gap-1.5 rounded-full border border-gold-400/30 bg-gold-400/10 px-3.5 py-1.5 text-xs font-semibold tracking-wider text-gold-300 transition duration-300 hover:bg-gold-400 hover:text-navy-900"
+          title="Author & Job Studio"
         >
-          <svg class="size-4 text-gold-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-          </svg>
-          <span>Post an Opportunity</span>
+          <span class="size-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          Admin Studio
         </router-link>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="mx-auto max-w-7xl px-6 py-12 lg:py-16">
+    <!-- Title & Hero Banner -->
+    <section class="mb-12 max-w-3xl">
+      <div class="inline-flex items-center gap-2 rounded-full border border-gold-400/30 bg-gold-400/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-gold-300">
+        <span class="size-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>Curated Referral Network</span>
       </div>
-    </div>
-
-    <!-- Filters Section -->
-    <div class="mt-8">
-      <JobFilterBar
-        :search-query="searchQuery"
-        :selected-workplace="selectedWorkplace"
-        :selected-employment="selectedEmployment"
-        :total-jobs-count="allJobs.length"
-        :filtered-count="filteredJobs.length"
-        @update:search-query="searchQuery = $event"
-        @update:selected-workplace="selectedWorkplace = $event"
-        @update:selected-employment="selectedEmployment = $event"
-        @reset="resetFilters"
-      />
-    </div>
-
-    <!-- Job Cards Grid -->
-    <div v-if="filteredJobs.length" class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-      <JobCard
-        v-for="job in filteredJobs"
-        :key="job.id"
-        :job="job"
-      />
-    </div>
-
-    <!-- Empty State -->
-    <div
-      v-else
-      class="mt-12 rounded-3xl border border-white/10 bg-navy-800/30 p-12 text-center backdrop-blur-md"
-    >
-      <div class="mx-auto grid size-16 place-items-center rounded-2xl bg-white/5 text-3xl">
-        🔍
-      </div>
-      <h3 class="mt-4 text-lg font-bold text-white">No opportunities match your filter</h3>
-      <p class="mt-2 text-sm text-white/60">
-        Try adjusting your keywords or workplace filters.
+      <h1 class="mt-4 text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl text-white">
+        Tech Job Opportunities
+      </h1>
+      <p class="mt-4 text-base sm:text-lg leading-relaxed font-light text-white/80">
+        Curated DevSecOps, Cloud Architecture, Platform Engineering, and SRE roles — each backed by a direct referral link. Click any opportunity to apply immediately.
       </p>
-      <button
-        type="button"
-        @click="resetFilters"
-        class="mt-5 inline-flex items-center gap-2 rounded-xl bg-gold-400 px-4 py-2 text-xs font-bold text-navy-950 transition hover:bg-gold-300"
-      >
-        Reset all filters
-      </button>
-    </div>
 
-    <!-- Referral Submission CTA -->
-    <div class="mt-16 overflow-hidden rounded-3xl border border-gold-400/30 bg-linear-to-r from-navy-900 via-navy-800 to-navy-900 p-8 sm:p-10 shadow-2xl relative">
-      <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
-        <div>
-          <span class="text-xs font-bold uppercase tracking-widest text-gold-400">Hiring or Looking for Talent?</span>
-          <h2 class="mt-1 text-2xl font-bold text-white sm:text-3xl">Have an open role on your engineering team?</h2>
-          <p class="mt-2 text-sm text-white/70 max-w-xl font-light">
-            Share high-impact roles directly with our specialized DevSecOps and Cloud Engineering community.
+      <!-- Search Bar -->
+      <div class="mt-8 relative max-w-xl">
+        <input
+          v-model="searchQuery"
+          type="search"
+          placeholder="Search roles by title, company, location, or tags (e.g. Kubernetes, Remote, Terraform)..."
+          class="w-full rounded-2xl border border-white/15 bg-navy-800/80 px-5 py-3.5 pr-10 text-sm text-white placeholder-white/40 shadow-inner backdrop-blur-sm transition duration-300 focus:border-gold-400 focus:bg-navy-800 focus:ring-4 focus:ring-gold-400/20 focus:outline-none"
+        />
+        <button
+          v-if="searchQuery"
+          @click="searchQuery = ''"
+          class="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-bold text-white/40 hover:text-white cursor-pointer"
+        >
+          ✕
+        </button>
+      </div>
+
+      <!-- Workplace Category Filters -->
+      <div class="mt-6 flex flex-wrap items-center gap-2">
+        <button
+          v-for="wp in workplaceCategories"
+          :key="wp.value"
+          @click="selectedWorkplace = wp.value"
+          :class="[
+            'rounded-full px-4 py-1.5 text-xs font-semibold tracking-wider uppercase transition duration-300 cursor-pointer',
+            selectedWorkplace === wp.value
+              ? 'bg-gold-400 text-navy-900 shadow-md shadow-gold-500/30 scale-105'
+              : 'border border-white/10 bg-white/5 text-white/70 hover:bg-white/10 hover:text-white'
+          ]"
+        >
+          {{ wp.label }}
+        </button>
+
+        <span class="mx-1 hidden sm:inline-block text-white/20">|</span>
+
+        <button
+          v-for="emp in employmentCategories"
+          :key="emp.value"
+          @click="selectedEmployment = emp.value"
+          :class="[
+            'rounded-full px-4 py-1.5 text-xs font-semibold tracking-wider uppercase transition duration-300 cursor-pointer',
+            selectedEmployment === emp.value
+              ? 'bg-gold-400 text-navy-900 shadow-md shadow-gold-500/30 scale-105'
+              : 'border border-white/10 bg-white/5 text-white/70 hover:bg-white/10 hover:text-white'
+          ]"
+        >
+          {{ emp.label }}
+        </button>
+      </div>
+    </section>
+
+    <!-- Featured Opportunity Spotlight -->
+    <section v-if="isFeaturedBannerVisible && featuredJob" class="mb-14">
+      <div
+        role="button"
+        tabindex="0"
+        @click="openReferral(featuredJob.referralLink)"
+        @keydown.enter="openReferral(featuredJob.referralLink)"
+        class="group relative block overflow-hidden rounded-3xl border border-gold-400/30 bg-linear-to-br from-navy-800/90 to-navy-950 p-6 sm:p-10 shadow-2xl transition duration-500 hover:border-gold-400/60 hover:shadow-gold-500/10 cursor-pointer"
+      >
+        <div class="flex flex-wrap items-center justify-between gap-3 text-xs text-gold-400">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="rounded-full bg-gold-400/20 px-3 py-1 font-semibold tracking-wider uppercase">
+              Featured Opportunity
+            </span>
+            <span class="rounded-full bg-navy-700/80 px-2.5 py-1 font-semibold tracking-wider text-gold-300 uppercase">
+              {{ featuredJob.workplaceType }}
+            </span>
+            <span class="rounded-full bg-white/10 px-2.5 py-1 font-semibold tracking-wider text-white/80 uppercase">
+              {{ featuredJob.employmentType }}
+            </span>
+          </div>
+          <div class="flex items-center gap-3 text-white/60">
+            <span>{{ featuredJob.company }}</span>
+            <span>•</span>
+            <span>{{ featuredJob.location }}</span>
+            <template v-if="featuredJob.salaryRange">
+              <span>•</span>
+              <span class="font-semibold text-emerald-400">{{ featuredJob.salaryRange }}</span>
+            </template>
+          </div>
+        </div>
+
+        <h2 class="mt-4 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white transition duration-300 group-hover:text-gold-300">
+          {{ featuredJob.title }}
+        </h2>
+
+        <p class="mt-3 max-w-3xl text-base sm:text-lg leading-relaxed font-light text-white/80">
+          {{ featuredJob.description }}
+        </p>
+
+        <div class="mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-6">
+          <div class="flex flex-wrap gap-2">
+            <span
+              v-for="tag in featuredJob.tags"
+              :key="tag"
+              class="rounded-md bg-white/10 px-2.5 py-1 text-xs font-medium text-white/80"
+            >
+              #{{ tag }}
+            </span>
+          </div>
+          <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-gold-400 transition-transform duration-300 group-hover:translate-x-1">
+            Apply via Referral →
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Opportunities Grid -->
+    <section>
+      <div class="mb-6 flex items-center justify-between border-b border-white/10 pb-3">
+        <h2 class="text-xs font-bold tracking-[0.2em] uppercase text-white/60">
+          {{ filteredJobs.length }} {{ filteredJobs.length === 1 ? 'Opportunity' : 'Opportunities' }} Available
+        </h2>
+        <button
+          v-if="isFiltering"
+          @click="resetFilters"
+          class="text-xs font-semibold uppercase tracking-wider text-gold-400 hover:text-gold-300 cursor-pointer"
+        >
+          Clear Filters ✕
+        </button>
+      </div>
+
+      <div v-if="filteredJobs.length === 0" class="rounded-3xl border border-white/10 bg-navy-800/40 p-12 text-center">
+        <p class="text-lg font-light text-white/70">No job opportunities match your current search or filter.</p>
+        <button
+          @click="resetFilters"
+          class="mt-4 inline-flex items-center rounded-full bg-gold-400 px-5 py-2 text-xs font-semibold uppercase tracking-wider text-navy-900 cursor-pointer"
+        >
+          Clear Filters
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <JobCard v-for="job in displayJobs" :key="job.id" :job="job" />
+      </div>
+    </section>
+
+    <!-- Bottom Author / Hiring Card -->
+    <section class="mt-20 rounded-3xl border border-white/10 bg-linear-to-r from-navy-800 to-navy-900 p-8 sm:p-10 shadow-2xl">
+      <div class="flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
+        <img
+          src="/assets/img/didier-headshot.jpg"
+          alt="Didier Yufenyuy Veyeh"
+          class="size-20 rounded-full border-2 border-gold-300 object-cover shadow-lg"
+        />
+        <div class="flex-1">
+          <h3 class="text-xl font-bold text-white">Hiring for a Cloud or DevSecOps Role?</h3>
+          <p class="text-xs font-semibold uppercase tracking-wider text-gold-400">Direct Engineering Referral Network</p>
+          <p class="mt-2 text-sm leading-relaxed font-light text-white/80 max-w-2xl">
+            Share high-impact DevSecOps, Cloud Architecture, Platform Engineering, and SRE opportunities directly with our community. Manage or publish new roles via the Admin Studio.
           </p>
         </div>
-        <router-link
-          to="/admin"
-          class="shrink-0 inline-flex items-center gap-2 rounded-2xl bg-gold-400 px-6 py-3.5 text-sm font-bold text-navy-950 transition duration-300 hover:scale-105 hover:bg-gold-300 hover:shadow-lg hover:shadow-gold-400/20"
-        >
-          <span>Post a Job Opportunity →</span>
-        </router-link>
+        <div class="flex flex-col gap-2">
+          <router-link
+            to="/admin"
+            class="rounded-full bg-gold-400 px-6 py-2.5 text-xs font-bold uppercase tracking-wider text-navy-900 shadow-md transition duration-300 hover:scale-105"
+          >
+            Post an Opportunity
+          </router-link>
+        </div>
       </div>
-    </div>
+    </section>
   </main>
 </div>

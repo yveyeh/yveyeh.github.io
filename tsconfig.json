@@ -12,7 +12,10 @@
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
     "allowJs": true,
-    "noEmit": true
+    "noEmit": true,
+    "paths": {
+      "vuex": ["./node_modules/vuex/types/index.d.ts"]
+    }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
 }

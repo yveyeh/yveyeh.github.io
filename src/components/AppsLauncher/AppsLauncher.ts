@@ -1,6 +1,6 @@
 import { defineComponent, ref, onMounted, onBeforeUnmount } from 'vue'
 import BrandIcon from '../BrandIcon/BrandIcon'
-import { socials } from '../../data/socials'
+import { useProfileStore } from '../../data/profileStore'
 import { faCalendarCheck } from '@fortawesome/free-solid-svg-icons'
 import template from './AppsLauncher.html?raw'
 
@@ -11,6 +11,7 @@ export default defineComponent({
     BrandIcon
   },
   setup() {
+    const { socialLinks } = useProfileStore()
     const open = ref<boolean>(false)
     const root = ref<HTMLElement | null>(null)
 
@@ -47,7 +48,7 @@ export default defineComponent({
     return {
       open,
       root,
-      socials,
+      socials: socialLinks,
       faCalendarCheck,
       toggle,
       close

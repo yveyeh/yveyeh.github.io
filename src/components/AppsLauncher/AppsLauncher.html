@@ -1,4 +1,4 @@
-<div ref="root" class="fixed top-4 right-4 z-50 sm:top-6 sm:right-6">
+<div ref="root" class="fixed top-4 right-4 z-50 sm:top-5 sm:right-6">
   <!-- Nine-dot FAB -->
   <button
     id="apps-launcher-toggle"
@@ -8,14 +8,87 @@
     aria-controls="apps-launcher-pane"
     aria-label="Connect & Profiles"
     title="Connect & Profiles"
-    class="group grid size-12 cursor-pointer place-items-center rounded-full border border-white/20 bg-white/10 text-white shadow-lg shadow-black/30 backdrop-blur-md transition duration-300 hover:scale-105 hover:bg-white/20 focus-visible:ring-4 focus-visible:ring-gold-400/60 focus-visible:outline-none active:scale-95"
-    :class="open && 'bg-white/25 ring-2 ring-gold-400/70'"
+    class="group relative grid size-12 cursor-pointer place-items-center rounded-full border border-gold-400/50 bg-navy-900/80 text-white shadow-lg shadow-black/40 backdrop-blur-md transition duration-300 hover:scale-105 hover:border-gold-400 hover:bg-navy-800 focus-visible:ring-4 focus-visible:ring-gold-400/60 focus-visible:outline-none active:scale-95"
+    :class="open && 'bg-navy-800 ring-2 ring-gold-400/80'"
     @click="toggle"
   >
-    <span class="grid grid-cols-3 gap-[3px] transition-transform duration-500" :class="open ? 'rotate-90' : 'group-hover:rotate-45'">
+    <!-- Subtle attention ring pulse around the 9-dot button -->
+    <span
+      v-if="!open"
+      class="pointer-events-none absolute -inset-0.5 rounded-full border border-gold-400/40 animate-ping [animation-duration:3s]"
+      aria-hidden="true"
+    />
+    <span class="grid grid-cols-3 gap-[3px] transition-transform duration-500" :class="open ? 'rotate-90 text-gold-300' : 'group-hover:rotate-45 group-hover:text-gold-300'">
       <span v-for="n in 9" :key="n" class="size-[5px] rounded-full bg-current" />
     </span>
   </button>
+
+  <!-- 45-Degree Bottom-Left Curly Pork-Tail Arrow with "MORE" Pill touching the exact arrow tail -->
+  <Transition
+    enter-active-class="transition duration-300 ease-out"
+    enter-from-class="opacity-0 -translate-x-2 translate-y-2 scale-90"
+    enter-to-class="opacity-100 translate-x-0 translate-y-0 scale-100"
+    leave-active-class="transition duration-200 ease-in"
+    leave-from-class="opacity-100 translate-x-0 translate-y-0 scale-100"
+    leave-to-class="opacity-0 -translate-x-2 translate-y-2 scale-90"
+  >
+    <button
+      v-if="!open"
+      type="button"
+      @click="toggle"
+      aria-label="More options and social handles"
+      class="group/hint absolute top-8 right-8 sm:top-9 sm:right-9 cursor-pointer select-none focus:outline-none animate-bounce [animation-duration:2.8s]"
+    >
+      <svg
+        class="w-32 h-20 sm:w-36 sm:h-22 drop-shadow-[0_3px_10px_rgba(0,0,0,0.55)] transition-transform duration-300 group-hover/hint:translate-x-0.5 group-hover/hint:-translate-y-0.5"
+        viewBox="0 0 138 86"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <!-- "MORE" Pill whose right edge (x=58, y=68) directly touches the very end of the arrow tail -->
+        <rect
+          x="2"
+          y="56"
+          width="56"
+          height="24"
+          rx="12"
+          fill="#001a3d"
+          stroke="#ffc61a"
+          stroke-width="1.6"
+        />
+        <text
+          x="30"
+          y="72"
+          text-anchor="middle"
+          fill="#ffd866"
+          font-size="11"
+          font-weight="800"
+          letter-spacing="1.4"
+          style="font-family: var(--font-sans), sans-serif;"
+        >
+          MORE
+        </text>
+
+        <!-- 45° Pork-Tail / Smiley Arrow starting directly at the right edge of the MORE pill (58, 68) -->
+        <path
+          d="M 58 68 C 80 68, 100 54, 94 36 C 89 22, 71 29, 79 43 C 87 57, 108 36, 124 10"
+          stroke="#ffc61a"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <!-- 45° Arrowhead pointing up-right (↗) at the 9-dot button -->
+        <path
+          d="M 110 12 L 125 9 L 122 24"
+          stroke="#ffc61a"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </button>
+  </Transition>
 
   <!-- Apps pane -->
   <Transition

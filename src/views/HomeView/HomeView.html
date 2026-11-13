@@ -1,16 +1,16 @@
 <div class="relative min-h-dvh overflow-hidden bg-navy-900 bg-[url(/assets/img/bg-mobile-fallback.jpg)] bg-cover bg-center font-sans text-white antialiased">
-  <!-- Background video (hidden on touch devices, which use the fallback image) -->
+  <!-- Background video: Centralized Live System Design Flow (Kubernetes + PostgreSQL + MongoDB) -->
   <video
+    key="system-design-flow-v2"
+    src="/assets/video/system-design-flow.mp4"
     class="fixed top-1/2 left-1/2 z-0 min-h-full min-w-full -translate-x-1/2 -translate-y-1/2 object-cover pointer-coarse:hidden"
     playsinline
     autoplay
     muted
     loop
     aria-hidden="true"
-  >
-    <source src="/assets/video/bg.mp4" type="video/mp4" />
-  </video>
-  <div class="fixed inset-0 z-[1] bg-umber/70" aria-hidden="true" />
+  />
+  <div class="fixed inset-0 z-[1] bg-linear-to-r from-navy-950/70 via-navy-900/20 to-navy-950/10" aria-hidden="true" />
 
   <AppsLauncher />
 
@@ -30,8 +30,8 @@
         <div class="relative group">
           <div class="absolute -inset-1 rounded-full bg-linear-to-r from-gold-300 via-gold-400 to-gold-500 opacity-75 blur-sm transition duration-500 group-hover:opacity-100 animate-pulse"></div>
           <img
-            src="/assets/img/didier-headshot.jpg"
-            alt="Didier Yufenyuy Veyeh"
+            :src="profile.avatar"
+            :alt="profile.name"
             class="relative size-24 sm:size-28 rounded-full object-cover border-2 border-gold-300 shadow-xl"
           />
         </div>
@@ -39,11 +39,11 @@
           <div class="flex items-center gap-2">
             <span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/15 px-3 py-1 text-xs font-medium text-emerald-300 ring-1 ring-emerald-400/30 backdrop-blur-sm">
               <span class="size-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              Available for Projects
+              {{ profile.statusBadge }}
             </span>
           </div>
-          <p class="mt-1.5 text-lg font-bold capitalize tracking-[0.2em] text-gold-400">DevSecOps Solutions Architect</p>
-          <p class="mt-1.5 text-sm font-semibold lowercase tracking-[0.2em] text-gold-400">didi@yveyeh.dev</p>
+          <p class="mt-1.5 text-lg font-bold capitalize tracking-[0.2em] text-gold-400">{{ profile.title }}</p>
+          <p class="mt-1.5 text-sm font-semibold lowercase tracking-[0.2em] text-gold-400">{{ profile.email }}</p>
         </div>
       </div>
 
@@ -67,13 +67,13 @@
             v-if="showBadge"
             class="ml-1.5 inline-block rounded-full bg-gold-400 px-3 py-0.5 text-sm font-semibold tracking-wide text-navy-900 shadow-md shadow-gold-500/30 animate-badge-blink align-middle"
           >
-            Didi
+            {{ profile.nickname }}
           </span>
         </Transition>
       </p>
 
       <p class="mb-8 max-w-lg text-base sm:text-lg leading-relaxed font-light text-white/90">
-        Welcome to my digital space. I am a DevSecOps Solutions Architect dedicated to engineering secure-by-design cloud infrastructure, automated CI/CD security pipelines, and resilient software systems. Explore my open-source projects, architecture blueprints, and technical publications.
+        {{ profile.bio }}
       </p>
 
       <div class="flex flex-col gap-3 sm:flex-row sm:gap-4">
@@ -86,7 +86,7 @@
           <div class="flex items-center gap-2">
             <a
               id="github-code-btn"
-              href="https://github.com/yveyeh?tab=repositories"
+              :href="profile.githubUrl"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub Repositories"
@@ -97,7 +97,7 @@
             </a>
             <a
               id="gitlab-code-btn"
-              href="https://gitlab.com/yveyeh"
+              :href="profile.gitlabUrl"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitLab Repositories"
@@ -113,14 +113,14 @@
           to="/blog"
           class="inline-flex items-center justify-center gap-2 rounded-full border-2 border-gold-400 px-7 py-3 text-sm font-semibold tracking-[0.15em] text-gold-400 uppercase backdrop-blur-sm transition duration-300 hover:-translate-y-0.5 hover:bg-gold-400 hover:text-navy-900 focus-visible:ring-4 focus-visible:ring-gold-300/60 focus-visible:outline-none active:translate-y-0"
         >
-          Explore My Blog
+          Blog
         </router-link>
         <router-link
           id="visit-jobs-btn"
           to="/jobs"
           class="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/10 px-6 py-3 text-sm font-semibold tracking-[0.15em] text-white uppercase backdrop-blur-sm transition duration-300 hover:-translate-y-0.5 hover:bg-white/20 hover:border-gold-400/60 hover:text-gold-300 focus-visible:ring-4 focus-visible:ring-gold-300/60 focus-visible:outline-none"
         >
-          Tech Opportunities
+          Opportunities
         </router-link>
       </div>
     </section>

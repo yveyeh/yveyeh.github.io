@@ -4,6 +4,7 @@ import { defineComponent, ref, onMounted } from 'vue'
 import { faGithub, faGitlab } from '@fortawesome/free-brands-svg-icons'
 import BrandIcon from '../../components/BrandIcon/BrandIcon'
 import AppsLauncher from '../../components/AppsLauncher/AppsLauncher'
+import { useProfileStore } from '../../data/profileStore'
 
 export default defineComponent({
   name: 'HomeView',
@@ -13,6 +14,7 @@ export default defineComponent({
     AppsLauncher,
   },
   setup() {
+    const { profile } = useProfileStore()
     const typedPart1 = ref('')
     const typedName = ref('')
     const typedPart2 = ref('')
@@ -25,8 +27,8 @@ export default defineComponent({
       await sleep(400)
 
       const part1 = "I'm"
-      const fullName = "Didier Yufenyuy Veyeh"
-      const part2 = ", but you can also call me"
+      const fullName = profile.value.name || 'Didier Yufenyuy Veyeh'
+      const part2 = ', but you can also call me'
 
       for (let i = 1; i <= part1.length; i++) {
         typedPart1.value = part1.slice(0, i)
@@ -49,6 +51,7 @@ export default defineComponent({
     })
 
     return {
+      profile,
       typedPart1,
       typedName,
       typedPart2,

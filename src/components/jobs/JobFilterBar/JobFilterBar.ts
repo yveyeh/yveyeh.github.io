@@ -59,10 +59,15 @@ export default defineComponent({
       emit('reset')
     }
 
+    const clearSearch = () => {
+      emit('update:searchQuery', '')
+    }
+
     return {
       workplaceOptions,
       employmentOptions,
       onSearch,
+      clearSearch,
       setWorkplace,
       setEmployment,
       onReset,
