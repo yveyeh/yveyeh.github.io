@@ -1,5 +1,0 @@
-cd User-agent: *
-Crawl-delay: 30
-Disallow: /assets/
-
-Sitemap: https://www.yveyeh.github.io/sitemap.xml

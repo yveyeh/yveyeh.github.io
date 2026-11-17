@@ -1,0 +1,24 @@
+<section class="mt-14 rounded-3xl border border-white/10 bg-linear-to-r from-navy-800 to-navy-900 p-6 sm:p-8 shadow-xl">
+  <div class="flex flex-col sm:flex-row items-center gap-5 text-center sm:text-left">
+    <img
+      :src="author?.avatar || '/assets/img/didier-headshot.jpg'"
+      :alt="author?.name || 'Didier Yufenyuy Veyeh'"
+      class="size-16 rounded-full border-2 border-gold-300 object-cover shadow-lg"
+    />
+    <div class="flex-1">
+      <h3 class="text-base font-bold text-white">{{ author?.name || 'Didier Yufenyuy Veyeh' }}</h3>
+      <p class="text-xs font-semibold uppercase tracking-wider text-gold-400">{{ author?.title || 'DevSecOps Solutions Architect' }}</p>
+      <p class="mt-1.5 text-xs sm:text-sm font-light text-white/80">
+        Specializing in secure cloud transformations, zero-trust container pipelines, and Infrastructure as Code compliance.
+      </p>
+    </div>
+    <a
+      href="https://github.com/yveyeh"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="rounded-full bg-gold-400 px-5 py-2 text-xs font-bold uppercase tracking-wider text-navy-900 shadow-md transition hover:scale-105"
+    >
+      GitHub
+    </a>
+  </div>
+</section>

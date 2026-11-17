@@ -1,0 +1,395 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [6 0 R 8 0 R 10 0 R 12 0 R] /Count 4 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier /Encoding /WinAnsiEncoding >>
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 7 0 R >>
+endobj
+7 0 obj
+<< /Length 5723 >>
+stream
+0.96 0.97 0.99 rg 0 792 595.28 50 re f
+0.0 0.10 0.24 rg 48 792 499.28 2 re f
+BT /F2 9 Tf 0.35 0.42 0.52 rg 48 812 Td (DIDIER Y. VEYEH  |  COMPLETE CUMULATIVE ARCHITECTURE & IMPLEMENTATION REPORT) Tj ET
+0.95 0.97 1.0 rg 48 693.0 499.28 68 re f
+0.0 0.18 0.40 rg 48 693.0 4 68 re f
+BT /F2 16.0 Tf 0.0 0.10 0.24 rg 62 735.0 Td (UI Alignment, Flask + MySQL Backend & Vuex 4 Report) Tj ET
+BT /F1 9.5 Tf 0.25 0.32 0.42 rg 62 717.0 Td (Complete Unabridged Living Report: UI Fixes, Flask/MySQL API, Vuex 4, SOLID/ACID & Live System Flow) Tj ET
+BT /F1 8.5 Tf 0.40 0.46 0.55 rg 62 702.0 Td (Project: yveyeh.github.io   |   Author: Didier Yufenyuy Veyeh   |   All Sections Preserved) Tj ET
+0.95 0.71 0.0 rg 48 662.0 18 16 re f
+BT /F2 9.5 Tf 0.0 0.10 0.24 rg 53 666.0 Td (01) Tj ET
+BT /F2 12.2 Tf 0.0 0.10 0.24 rg 74 665.0 Td (Why /jobs Looked Broken & How It Was Fixed) Tj ET
+0.85 0.88 0.93 RG 0.8 w 48 657.0 m 547.28 657.0 l S
+0.0 0.18 0.40 rg 54 643.5 3.2 3.2 re f
+BT /F2 9.5 Tf 0.05 0.12 0.24 rg 64 641.0 Td (Root Cause \(Missing Theme Token\):) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 627.5 Td (JobsView.html referenced bg-navy-950, which was not defined inside @theme in src/style.css. This caused) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 614.2 Td (Tailwind v4 to render a white background while keeping text-white, making headings and stats invisible.) Tj ET
+0.0 0.18 0.40 rg 54 601.4 3.2 3.2 re f
+BT /F2 9.5 Tf 0.05 0.12 0.24 rg 64 598.9 Td (Design System Unification with /blog:) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 585.4 Td (Added --color-navy-950 \(#000f24\) to src/style.css and standardized JobsView.html on bg-navy-900 to match) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 572.1 Td (BlogListView.html. Added the sticky top navigation header with headshot, title, and navigation links \(<-) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 558.8 Td (Home, Technical Blog, Admin Studio\).) Tj ET
+0.0 0.18 0.40 rg 54 546.0 3.2 3.2 re f
+BT /F2 9.5 Tf 0.05 0.12 0.24 rg 64 543.5 Td (Cohesive Components & Layout:) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 530.0 Td (Aligned the Hero section, search input, workplace/employment filter pills, Featured Opportunity Spotlight) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 516.7 Td (banner, 3-column JobCard grid, and bottom Referral CTA banner with the exact styling of the Blog page.) Tj ET
+0.95 0.71 0.0 rg 48 490.4 18 16 re f
+BT /F2 9.5 Tf 0.0 0.10 0.24 rg 53 494.4 Td (02) Tj ET
+BT /F2 12.2 Tf 0.0 0.10 0.24 rg 74 493.4 Td (Complete Flask + MySQL 8.0 Backend Architecture) Tj ET
+0.85 0.88 0.93 RG 0.8 w 48 485.4 m 547.28 485.4 l S
+BT /F1 9.6 Tf 0.18 0.22 0.28 rg 48.0 469.4 Td (All application data is now persisted in and served from a Python Flask REST API backed by a MySQL 8.0) Tj ET
+BT /F1 9.6 Tf 0.18 0.22 0.28 rg 48.0 455.7 Td (database \(container yveyeh-mysql on 127.0.0.1:3306, schema yveyeh_portfolio\), configured in) Tj ET
+BT /F1 9.6 Tf 0.18 0.22 0.28 rg 48.0 442.0 Td (docker-compose.yml and backend/.env. GitHub commit/deployment integration has been removed from the) Tj ET
+BT /F1 9.6 Tf 0.18 0.22 0.28 rg 48.0 428.3 Td (Admin Studio.) Tj ET
+0.91 0.94 0.98 rg 48 399.6 499.28 18 re f
+BT /F2 8.8 Tf 0.05 0.14 0.28 rg 54.0 404.6 Td (MySQL Table) Tj ET
+BT /F2 8.8 Tf 0.05 0.14 0.28 rg 169.0 404.6 Td (Model Class) Tj ET
+BT /F2 8.8 Tf 0.05 0.14 0.28 rg 284.0 404.6 Td (Purpose & Stored Attributes) Tj ET
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 386.6 Td (site_profile) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 169.0 386.6 Td (SiteProfile) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 284.0 386.6 Td (Hero profile name, title, email, avatar, bio, status badge & repo URLs) Tj ET
+0.97 0.98 0.995 rg 48 363.6 499.28 18 re f
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 368.6 Td (social_links) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 169.0 368.6 Td (SocialLink) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 284.0 368.6 Td (9-dot launcher social platforms, URLs, brand colors & sort order) Tj ET
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 350.6 Td (blog_posts) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 169.0 350.6 Td (BlogPostModel) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 284.0 350.6 Td (All 8 full Markdown technical articles, tags \(JSON\), category & author) Tj ET
+0.97 0.98 0.995 rg 48 327.6 499.28 18 re f
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 332.6 Td (post_interactions) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 169.0 332.6 Td (PostInteractionModel) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 284.0 332.6 Td (Per-article view counters, share counts & 5 reaction counters) Tj ET
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 314.6 Td (blog_comments) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 169.0 314.6 Td (BlogCommentModel) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 284.0 314.6 Td (Reader comments with ISO timestamps, handles & avatar colors) Tj ET
+0.97 0.98 0.995 rg 48 291.6 499.28 18 re f
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 296.6 Td (tech_jobs) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 169.0 296.6 Td (TechJobModel) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 284.0 296.6 Td (Curated job roles, workplace/employment types, salary & referral links) Tj ET
+0.95 0.71 0.0 rg 48 267.6 18 16 re f
+BT /F2 9.5 Tf 0.0 0.10 0.24 rg 53 271.6 Td (03) Tj ET
+BT /F2 12.2 Tf 0.0 0.10 0.24 rg 74 270.6 Td (Flask REST API Endpoints \(backend/app.py\)) Tj ET
+0.85 0.88 0.93 RG 0.8 w 48 262.6 m 547.28 262.6 l S
+BT /F1 9.6 Tf 0.18 0.22 0.28 rg 48.0 246.6 Td (Vite \(vite.config.js\) proxies /api requests to http://127.0.0.1:5000. All frontend views and) Tj ET
+BT /F1 9.6 Tf 0.18 0.22 0.28 rg 48.0 232.9 Td (AdminStudioView read and write directly through these endpoints:) Tj ET
+0.85 0.88 0.93 RG 0.6 w 48 38 m 547.28 38 l S
+BT /F1 8 Tf 0.45 0.50 0.58 rg 48 25 Td (yveyeh.github.io  -  Complete Unabridged Technical Report  |  Page 1 of 4) Tj ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 9 0 R >>
+endobj
+9 0 obj
+<< /Length 7113 >>
+stream
+0.96 0.97 0.99 rg 0 792 595.28 50 re f
+0.0 0.10 0.24 rg 48 792 499.28 2 re f
+BT /F2 9 Tf 0.35 0.42 0.52 rg 48 812 Td (DIDIER Y. VEYEH  |  COMPLETE CUMULATIVE ARCHITECTURE & IMPLEMENTATION REPORT) Tj ET
+0.91 0.94 0.98 rg 48 742.0 499.28 18 re f
+BT /F2 8.8 Tf 0.05 0.14 0.28 rg 54.0 747.0 Td (Method & Endpoint) Tj ET
+BT /F2 8.8 Tf 0.05 0.14 0.28 rg 239.0 747.0 Td (Description) Tj ET
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 729.0 Td (GET  /api/health) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 239.0 729.0 Td (Returns MySQL connection health and live row counts across all tables) Tj ET
+0.97 0.98 0.995 rg 48 706.0 499.28 18 re f
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 711.0 Td (GET/PUT /api/profile) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 239.0 711.0 Td (Fetches or updates site profile metadata and social handle links) Tj ET
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 693.0 Td (GET  /api/socials) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 239.0 693.0 Td (Returns ordered social links for the 9-dot launcher) Tj ET
+0.97 0.98 0.995 rg 48 670.0 499.28 18 re f
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 675.0 Td (GET/POST /api/posts) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 239.0 675.0 Td (Lists all blog posts or creates/upserts an article in MySQL) Tj ET
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 657.0 Td (GET/PUT/DELETE /api/posts/<slug>) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 239.0 657.0 Td (Fetches, updates, or deletes a specific blog post by slug or ID) Tj ET
+0.97 0.98 0.995 rg 48 634.0 499.28 18 re f
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 639.0 Td (POST /api/posts/reset) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 239.0 639.0 Td (Resets blog_posts table in MySQL back to the 8 seed articles) Tj ET
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 621.0 Td (GET  /api/posts/<slug>/interactions) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 239.0 621.0 Td (Returns views, shares, reactions, and comments for an article) Tj ET
+0.97 0.98 0.995 rg 48 598.0 499.28 18 re f
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 603.0 Td (POST /api/posts/<slug>/view | share) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 239.0 603.0 Td (Atomically increments article view or share count in MySQL) Tj ET
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 585.0 Td (POST /api/posts/<slug>/react) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 239.0 585.0 Td (Increments or decrements fire, smart, rocket, shield, or heart) Tj ET
+0.97 0.98 0.995 rg 48 562.0 499.28 18 re f
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 567.0 Td (POST /api/posts/<slug>/comments) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 239.0 567.0 Td (Persists a new reader comment in MySQL and returns updated list) Tj ET
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 549.0 Td (GET/POST /api/jobs) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 239.0 549.0 Td (Lists all tech job opportunities or publishes a new role to MySQL) Tj ET
+0.97 0.98 0.995 rg 48 526.0 499.28 18 re f
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 531.0 Td (GET/PUT/DELETE /api/jobs/<id>) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 239.0 531.0 Td (Fetches, updates, or deletes a job opportunity in MySQL) Tj ET
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 513.0 Td (POST /api/jobs/reset) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 239.0 513.0 Td (Resets tech_jobs table in MySQL back to initial curated roles) Tj ET
+0.97 0.98 0.995 rg 48 490.0 499.28 18 re f
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 495.0 Td (POST /api/auth/login | verify | logout) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 239.0 495.0 Td (Verifies admin passcode with SHA-256 + brute-force lockout) Tj ET
+0.95 0.71 0.0 rg 48 466.0 18 16 re f
+BT /F2 9.5 Tf 0.0 0.10 0.24 rg 53 470.0 Td (04) Tj ET
+BT /F2 12.2 Tf 0.0 0.10 0.24 rg 74 469.0 Td (Nine-Dot Button with Curly Pork-Tail / Smiley Arrow & 'MORE' Callout) Tj ET
+0.85 0.88 0.93 RG 0.8 w 48 461.0 m 547.28 461.0 l S
+0.0 0.18 0.40 rg 54 447.5 3.2 3.2 re f
+BT /F2 9.5 Tf 0.05 0.12 0.24 rg 64 445.0 Td (45-Degree Bottom-Left Orientation \(AppsLauncher.html\):) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 431.5 Td (Positioned the attention-grabbing callout at a 45-degree angle below and to the left of the top-right) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 418.2 Td (9-dot button \(absolute top-8 right-8 sm:top-9 sm:right-9\), pointing diagonally up-and-right toward the) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 404.9 Td (button.) Tj ET
+0.0 0.18 0.40 rg 54 392.1 3.2 3.2 re f
+BT /F2 9.5 Tf 0.05 0.12 0.24 rg 64 389.6 Td (Smiley Swoop + Curly Pork-Tail SVG Path:) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 376.1 Td (Features an animated gold SVG arrow with a smiley swoop and pork-tail loop plus a subtle pulse ring) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 362.8 Td (around the 9-dot button so it immediately catches visitors' attention. Clicking either the 'MORE') Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 349.5 Td (callout/arrow or the 9-dot button opens the menu \(and hides the arrow while open\).) Tj ET
+0.0 0.18 0.40 rg 54 336.7 3.2 3.2 re f
+BT /F2 9.5 Tf 0.05 0.12 0.24 rg 64 334.2 Td (Right Edge of 'MORE' Pill Touching the Exact End of the Arrow Tail:) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 320.7 Td (Both the 'MORE' pill \(rect x='2' y='56' width='56' height='24' rx='12', right edge at x=58, y=68\) and the) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 307.4 Td (45-degree pork-tail arrow are rendered inside one unified SVG \(viewBox='0 0 138 86'\). The arrow tail) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 294.1 Td (starts at M 58 68 -> C 80 68, 100 54, 94 36 C 89 22, 71 29, 79 43 C 87 57, 108 36, 124 10, so the right) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 280.8 Td (side of the 'MORE' pill directly touches the very tip of the arrow tail.) Tj ET
+0.95 0.71 0.0 rg 48 254.5 18 16 re f
+BT /F2 9.5 Tf 0.0 0.10 0.24 rg 53 258.5 Td (05) Tj ET
+BT /F2 12.2 Tf 0.0 0.10 0.24 rg 74 257.5 Td (Why *Store Was Named That Way & Migrating to Vuex 4) Tj ET
+0.85 0.88 0.93 RG 0.8 w 48 249.5 m 547.28 249.5 l S
+0.0 0.18 0.40 rg 54 236.0 3.2 3.2 re f
+BT /F2 9.5 Tf 0.05 0.12 0.24 rg 64 233.5 Td (Why It Was Originally Written as Composables:) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 220.0 Td (In Vue 3, lightweight reactive singletons \(useBlogStore, useJobStore\) or Pinia are often used instead of) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 206.7 Td (Vuex. However, Vuex 4 \(vuex@^4.1.0\) is the official Vuex release for Vue 3 and gives a strict,) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 193.4 Td (centralized state -> getters -> mutations -> actions architecture.) Tj ET
+0.0 0.18 0.40 rg 54 180.6 3.2 3.2 re f
+BT /F2 9.5 Tf 0.05 0.12 0.24 rg 64 178.1 Td (Full Migration to Centralized Vuex 4 Store \(src/store/index.ts\):) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 164.6 Td (Installed vuex@^4.1.0, configured TypeScript path declarations in tsconfig.json, registered) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 151.3 Td (createApp\(App\).use\(store\) in src/main.ts, and wired blogStore.ts, jobStore.ts, and profileStore.ts) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 138.0 Td (directly to the centralized Vuex store.) Tj ET
+0.85 0.88 0.93 RG 0.6 w 48 38 m 547.28 38 l S
+BT /F1 8 Tf 0.45 0.50 0.58 rg 48 25 Td (yveyeh.github.io  -  Complete Unabridged Technical Report  |  Page 2 of 4) Tj ET
+endstream
+endobj
+10 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 11 0 R >>
+endobj
+11 0 obj
+<< /Length 8061 >>
+stream
+0.96 0.97 0.99 rg 0 792 595.28 50 re f
+0.0 0.10 0.24 rg 48 792 499.28 2 re f
+BT /F2 9 Tf 0.35 0.42 0.52 rg 48 812 Td (DIDIER Y. VEYEH  |  COMPLETE CUMULATIVE ARCHITECTURE & IMPLEMENTATION REPORT) Tj ET
+0.91 0.94 0.98 rg 48 742.0 499.28 18 re f
+BT /F2 8.8 Tf 0.05 0.14 0.28 rg 54.0 747.0 Td (Vuex 4 Layer) Tj ET
+BT /F2 8.8 Tf 0.05 0.14 0.28 rg 149.0 747.0 Td (Identifier) Tj ET
+BT /F2 8.8 Tf 0.05 0.14 0.28 rg 314.0 747.0 Td (Responsibility in src/store/index.ts) Tj ET
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 729.0 Td (state) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 149.0 729.0 Td (posts, jobs, profile, socials...) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 314.0 729.0 Td (Single source of truth for articles, jobs, profile & DB health) Tj ET
+0.97 0.98 0.995 rg 48 706.0 499.28 18 re f
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 711.0 Td (getters) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 149.0 711.0 Td (allPosts, postBySlug, allJobs...) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 314.0 711.0 Td (Reactive selectors for filtered views and slug/ID lookups) Tj ET
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 693.0 Td (mutations) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 149.0 693.0 Td (SET_POSTS, UPSERT_POST, REMOVE_POST) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 314.0 693.0 Td (Synchronous state transitions for blog articles) Tj ET
+0.97 0.98 0.995 rg 48 670.0 499.28 18 re f
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 675.0 Td (mutations) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 149.0 675.0 Td (SET_JOBS, ADD_JOB, UPDATE_JOB...) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 314.0 675.0 Td (Synchronous state transitions for tech job opportunities) Tj ET
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 657.0 Td (mutations) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 149.0 657.0 Td (SET_PROFILE, SET_SOCIALS, SET_BACKEND...) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 314.0 657.0 Td (Updates site profile, 9-dot social links & MySQL telemetry) Tj ET
+0.97 0.98 0.995 rg 48 634.0 499.28 18 re f
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 639.0 Td (actions) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 149.0 639.0 Td (fetchPosts, savePost, deletePost...) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 314.0 639.0 Td (Async REST calls to Flask + MySQL \(/api/posts\)) Tj ET
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 621.0 Td (actions) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 149.0 621.0 Td (fetchJobs, addJob, updateJob...) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 314.0 621.0 Td (Async REST calls to Flask + MySQL \(/api/jobs\)) Tj ET
+0.97 0.98 0.995 rg 48 598.0 499.28 18 re f
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 603.0 Td (actions) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 149.0 603.0 Td (fetchProfileAndSocials, fetchBackend...) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 314.0 603.0 Td (Syncs profile, socials, and /api/health telemetry from MySQL) Tj ET
+0.95 0.71 0.0 rg 48 574.0 18 16 re f
+BT /F2 9.5 Tf 0.0 0.10 0.24 rg 53 578.0 Td (06) Tj ET
+BT /F2 12.2 Tf 0.0 0.10 0.24 rg 74 577.0 Td (SOLID OOP & Strict ACID Backend Architecture) Tj ET
+0.85 0.88 0.93 RG 0.8 w 48 569.0 m 547.28 569.0 l S
+0.0 0.18 0.40 rg 54 555.5 3.2 3.2 re f
+BT /F2 9.5 Tf 0.05 0.12 0.24 rg 64 553.0 Td (Atomicity \(backend/core/database.py - TransactionManager.atomic\(\)\):) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 539.5 Td (Provides a Unit-of-Work context manager where multi-table operations \(such as saving a BlogPostModel and) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 526.2 Td (initializing its PostInteractionModel\) commit together or automatically rollback\(\) on any exception.) Tj ET
+0.0 0.18 0.40 rg 54 513.4 3.2 3.2 re f
+BT /F2 9.5 Tf 0.05 0.12 0.24 rg 64 510.9 Td (Consistency & Domain Validation:) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 497.4 Td (Domain invariants \(DomainValidationError, EntityNotFoundError\) and schema constraints are validated prior) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 484.1 Td (to commit and handled via centralized Flask error handlers.) Tj ET
+0.0 0.18 0.40 rg 54 471.3 3.2 3.2 re f
+BT /F2 9.5 Tf 0.05 0.12 0.24 rg 64 468.8 Td (Isolation & Concurrency Safety:) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 455.3 Td (Configured READ COMMITTED engine isolation with explicit InnoDB row-level pessimistic locks) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 442.0 Td (\(with_for_update\(\) / SELECT ... FOR UPDATE\) and server-side atomic SQL increments) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 428.7 Td (\(PostInteractionModel.views + 1\) so concurrent requests never overwrite counters.) Tj ET
+0.0 0.18 0.40 rg 54 415.9 3.2 3.2 re f
+BT /F2 9.5 Tf 0.05 0.12 0.24 rg 64 413.4 Td (Durability \(backend/models.py - BaseEntity\):) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 399.9 Td (Enforces mysql_engine='InnoDB' and utf8mb4_unicode_ci across all tables with connection pool pre-ping) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 386.6 Td (health checks.) Tj ET
+0.0 0.18 0.40 rg 54 373.8 3.2 3.2 re f
+BT /F2 9.5 Tf 0.05 0.12 0.24 rg 64 371.3 Td (SOLID OOP Repository & Service Layers:) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 357.8 Td (Abstract IReadRepository[T] contract \(ISP/DIP\) in backend/repositories.py is implemented by) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 344.5 Td (PostRepository, InteractionRepository, JobRepository, ProfileRepository, and DiagnosticsRepository \(SRP\),) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 331.2 Td (and injected into BlogService, JobService, ProfileService, AuthService, and DiagnosticsService in) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 317.9 Td (backend/services.py.) Tj ET
+0.95 0.71 0.0 rg 48 291.6 18 16 re f
+BT /F2 9.5 Tf 0.0 0.10 0.24 rg 53 295.6 Td (07) Tj ET
+BT /F2 12.2 Tf 0.0 0.10 0.24 rg 74 294.6 Td (Upgraded Home Page Looping Video: Centralized Live System Design Flow) Tj ET
+0.85 0.88 0.93 RG 0.8 w 48 286.6 m 547.28 286.6 l S
+0.0 0.18 0.40 rg 54 273.1 3.2 3.2 re f
+BT /F2 9.5 Tf 0.05 0.12 0.24 rg 64 270.6 Td (1080p @ 30fps H.264 Seamless Loop \(system-design-flow.mp4 & bg.mp4\):) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 257.1 Td (Replaced the legacy 6.1 MB background video \(backed up at bg-legacy.mp4\) with a 470 KB 1920x1080 @ 30fps) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 243.8 Td (H.264 seamlessly looping Live System Design Flow video and matching bg-mobile-fallback.jpg.) Tj ET
+0.0 0.18 0.40 rg 54 231.0 3.2 3.2 re f
+BT /F2 9.5 Tf 0.05 0.12 0.24 rg 64 228.5 Td (Centralized, Aesthetic 3-Tier Symmetrical Topology:) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 215.0 Td (Centered around the Kubernetes Mesh \(Cilium eBPF + Istio mTLS\) hub at \(x=1190, y=545\) with concentric) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 201.7 Td (orbital rings, expanding sonar waves, double-layered curved Bezier pipelines, and glowing animated data) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 188.4 Td (packets.) Tj ET
+0.0 0.18 0.40 rg 54 175.6 3.2 3.2 re f
+BT /F2 9.5 Tf 0.05 0.12 0.24 rg 64 173.1 Td (Polyglot Data Plane with PostgreSQL 16 + MongoDB + Redis:) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 159.6 Td (Tier 1 \(Ingress & CI\): GIT + OIDC AUTH, ZERO-TRUST CI GATE \(Trivy + Cosign\), CLOUDFLARE + ENVOY WAF. Tier) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 146.3 Td (2 \(Core Hub\): ARGO CD GITOPS, KUBERNETES MESH, OTEL + PROMETHEUS. Tier 3 \(Data Plane\): REDIS CLUSTER,) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 133.0 Td (POSTGRESQL 16 \(ACID Primary + Read Replicas\), and MONGODB SHARD \(Replica Set Document Store\).) Tj ET
+0.0 0.18 0.40 rg 54 120.2 3.2 3.2 re f
+BT /F2 9.5 Tf 0.05 0.12 0.24 rg 64 117.7 Td (Crystal-Clear Contrast in HomeView.html:) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 104.2 Td (Bound src='/assets/video/system-design-flow.mp4' directly on the <video> element and replaced the heavy) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 90.9 Td (bg-umber/70 overlay with a directional gradient \(bg-linear-to-r from-navy-950/70 via-navy-900/20) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 77.6 Td (to-navy-950/10\) so the live system design flow shines through clearly.) Tj ET
+0.85 0.88 0.93 RG 0.6 w 48 38 m 547.28 38 l S
+BT /F1 8 Tf 0.45 0.50 0.58 rg 48 25 Td (yveyeh.github.io  -  Complete Unabridged Technical Report  |  Page 3 of 4) Tj ET
+endstream
+endobj
+12 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 13 0 R >>
+endobj
+13 0 obj
+<< /Length 8166 >>
+stream
+0.96 0.97 0.99 rg 0 792 595.28 50 re f
+0.0 0.10 0.24 rg 48 792 499.28 2 re f
+BT /F2 9 Tf 0.35 0.42 0.52 rg 48 812 Td (DIDIER Y. VEYEH  |  COMPLETE CUMULATIVE ARCHITECTURE & IMPLEMENTATION REPORT) Tj ET
+0.95 0.71 0.0 rg 48 744.0 18 16 re f
+BT /F2 9.5 Tf 0.0 0.10 0.24 rg 53 748.0 Td (08) Tj ET
+BT /F2 12.2 Tf 0.0 0.10 0.24 rg 74 747.0 Td (Full-Stack Unit Testing & Coverage Report \(Frontend & Backend >= 85%\)) Tj ET
+0.85 0.88 0.93 RG 0.8 w 48 739.0 m 547.28 739.0 l S
+BT /F1 9.6 Tf 0.18 0.22 0.28 rg 48.0 723.0 Td (Automated unit and integration test suites were engineered across the entire Vue 3 + TypeScript + Vuex) Tj ET
+BT /F1 9.6 Tf 0.18 0.22 0.28 rg 48.0 709.3 Td (4 frontend \(Vitest + @vue/test-utils + happy-dom + V8 coverage\) and the SOLID OOP + ACID Flask backend) Tj ET
+BT /F1 9.6 Tf 0.18 0.22 0.28 rg 48.0 695.6 Td (\(pytest + pytest-cov\), enforcing a strict >= 85% minimum coverage threshold in both vite.config.js and) Tj ET
+BT /F1 9.6 Tf 0.18 0.22 0.28 rg 48.0 681.9 Td (backend/pyproject.toml.) Tj ET
+0.91 0.94 0.98 rg 48 653.2 499.28 18 re f
+BT /F2 8.8 Tf 0.05 0.14 0.28 rg 54.0 658.2 Td (Test Suite Layer) Tj ET
+BT /F2 8.8 Tf 0.05 0.14 0.28 rg 204.0 658.2 Td (Runner & Tooling) Tj ET
+BT /F2 8.8 Tf 0.05 0.14 0.28 rg 349.0 658.2 Td (Coverage Metrics Achieved) Tj ET
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 640.2 Td (Backend \(Flask / SOLID / ACID\)) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 204.0 640.2 Td (pytest 9.2 + pytest-cov 7.1) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 349.0 640.2 Td (99.85% Total \(648 / 649 stmts; 100% models, repos, services, ACID\)) Tj ET
+0.97 0.98 0.995 rg 48 617.2 499.28 18 re f
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 622.2 Td (Frontend \(Vue 3 / Vuex 4 / UI\)) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 204.0 622.2 Td (Vitest 1.6 + @vitest/coverage-v8) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 349.0 622.2 Td (99.62% Stmts | 99.62% Lines | 99.18% Funcs | 85.93% Branches) Tj ET
+0.91 0.94 0.98 rg 48 591.2 499.28 18 re f
+BT /F2 8.8 Tf 0.05 0.14 0.28 rg 54.0 596.2 Td (Module / Test Target) Tj ET
+BT /F2 8.8 Tf 0.05 0.14 0.28 rg 189.0 596.2 Td (Stmts / Lines) Tj ET
+BT /F2 8.8 Tf 0.05 0.14 0.28 rg 257.0 596.2 Td (Funcs / Branches) Tj ET
+BT /F2 8.8 Tf 0.05 0.14 0.28 rg 335.0 596.2 Td (Verified Unit Test Scenarios) Tj ET
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 578.2 Td (backend/core/database.py) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 189.0 578.2 Td (100.0%) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 257.0 578.2 Td (100.0%) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 335.0 578.2 Td (TransactionManager.atomic\(\) commit & automatic rollback on failure) Tj ET
+0.97 0.98 0.995 rg 48 555.2 499.28 18 re f
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 560.2 Td (backend/models.py & seed.py) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 189.0 560.2 Td (100.0%) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 257.0 560.2 Td (100.0%) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 335.0 560.2 Td (InnoDB BaseEntity, 6 ORM models, JSON serialization & idempotent seed) Tj ET
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 542.2 Td (backend/repositories.py) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 189.0 542.2 Td (100.0%) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 257.0 542.2 Td (100.0%) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 335.0 542.2 Td (IReadRepository[T], Profile, Post, Interaction, Job & Diagnostics repos) Tj ET
+0.97 0.98 0.995 rg 48 519.2 499.28 18 re f
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 524.2 Td (backend/services.py) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 189.0 524.2 Td (100.0%) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 257.0 524.2 Td (100.0%) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 335.0 524.2 Td (AuthService lockout, ProfileService, BlogService, JobService & Diagnostics) Tj ET
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 506.2 Td (backend/app.py) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 189.0 506.2 Td (99.32%) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 257.0 506.2 Td (100.0%) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 335.0 506.2 Td (All 21 REST API routes, 400/404 domain error handlers & MySQL bootstrap) Tj ET
+0.97 0.98 0.995 rg 48 483.2 499.28 18 re f
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 488.2 Td (src/store/index.ts & src/data/*) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 189.0 488.2 Td (99.90%) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 257.0 488.2 Td (98.8% / 93.3%) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 335.0 488.2 Td (Vuex 4 state, getters, mutations, async fetch actions & store wrappers) Tj ET
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 470.2 Td (src/utils/date.ts & router/*) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 189.0 470.2 Td (100.0%) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 257.0 470.2 Td (100.0%) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 335.0 470.2 Td (formatRelativeTime, formatDate, Vue Router guards & scrollBehavior) Tj ET
+0.97 0.98 0.995 rg 48 447.2 499.28 18 re f
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 452.2 Td (src/composables/*) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 189.0 452.2 Td (100.0%) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 257.0 452.2 Td (100% / 85.9%) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 335.0 452.2 Td (useBlogInteractions \(views/shares/reactions/comments\) & useBlogPost) Tj ET
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 434.2 Td (src/components/** \(15 comps\)) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 189.0 434.2 Td (99.78%) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 257.0 434.2 Td (100% / 96.4%) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 335.0 434.2 Td (AppsLauncher, BrandIcon, JobCard, JobFilterBar & all 11 Blog components) Tj ET
+0.97 0.98 0.995 rg 48 411.2 499.28 18 re f
+BT /F3 8.3 Tf 0.02 0.22 0.45 rg 54.0 416.2 Td (src/views/** \(5 views\)) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 189.0 416.2 Td (98.78%) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 257.0 416.2 Td (100% / 80.5%) Tj ET
+BT /F1 8.7 Tf 0.20 0.25 0.32 rg 335.0 416.2 Td (HomeView, BlogListView, BlogPostView, JobsView & AdminStudioView CRUD) Tj ET
+0.95 0.71 0.0 rg 48 387.2 18 16 re f
+BT /F2 9.5 Tf 0.0 0.10 0.24 rg 53 391.2 Td (09) Tj ET
+BT /F2 12.2 Tf 0.0 0.10 0.24 rg 74 390.2 Td (Admin Auth Brute-Force Policy Update \(3 Attempts / 15-Min Lockout\)) Tj ET
+0.85 0.88 0.93 RG 0.8 w 48 382.2 m 547.28 382.2 l S
+0.0 0.18 0.40 rg 54 368.7 3.2 3.2 re f
+BT /F2 9.5 Tf 0.05 0.12 0.24 rg 64 366.2 Td (Stricter Brute-Force Lockout Threshold \(3 Attempts, 15 Minutes\):) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 352.7 Td (Updated AuthService in backend/services.py \(MAX_FAILED_ATTEMPTS = 3, LOCKOUT_DURATION_SEC = 900\) and) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 339.4 Td (AdminStudioView.ts \(MAX_FAILED_ATTEMPTS = 3, LOCKOUT_DURATION_MS = 15 * 60 * 1000\) so 3 consecutive) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 326.1 Td (invalid passcodes lock the studio for 15 minutes \(HTTP 429\).) Tj ET
+0.0 0.18 0.40 rg 54 313.3 3.2 3.2 re f
+BT /F2 9.5 Tf 0.05 0.12 0.24 rg 64 310.8 Td (Admin Studio Passcode Reference:) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 297.3 Td (The configured admin passcode in backend/.env and backend/services.py is 'didi2026' \(verified via) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 284.0 Td (constant-time SHA-256 comparison secrets.compare_digest on the backend and Web Crypto SHA-256 fallback on) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 270.7 Td (the frontend\).) Tj ET
+0.0 0.18 0.40 rg 54 257.9 3.2 3.2 re f
+BT /F2 9.5 Tf 0.05 0.12 0.24 rg 64 255.4 Td (Workspace IDE Problems Console Resolution \(pyrightconfig.json & .vscode/settings.json\):) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 241.9 Td (Configured pyrightconfig.json and .vscode/settings.json at the workspace root to bind the IDE Python) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 228.6 Td (language server to backend/.venv/bin/python with extraPaths=['backend'], unified) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 215.3 Td (IReadRepository.get_by_id signatures in backend/repositories.py, added explicit SQLAlchemy typing on) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 202.0 Td (BaseEntity in backend/models.py, and disabled false-positive CSS unknownAtRules warnings for Tailwind v4) Tj ET
+BT /F1 9.2 Tf 0.22 0.27 0.34 rg 64.0 188.7 Td (@theme directives.) Tj ET
+0.85 0.88 0.93 RG 0.6 w 48 38 m 547.28 38 l S
+BT /F1 8 Tf 0.45 0.50 0.58 rg 48 25 Td (yveyeh.github.io  -  Complete Unabridged Technical Report  |  Page 4 of 4) Tj ET
+endstream
+endobj
+xref
+0 14
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000141 00000 n 
+0000000238 00000 n 
+0000000340 00000 n 
+0000000435 00000 n 
+0000000587 00000 n 
+0000006362 00000 n 
+0000006514 00000 n 
+0000013679 00000 n 
+0000013833 00000 n 
+0000021947 00000 n 
+0000022101 00000 n 
+trailer
+<< /Size 14 /Root 1 0 R >>
+startxref
+30320
+%%EOF

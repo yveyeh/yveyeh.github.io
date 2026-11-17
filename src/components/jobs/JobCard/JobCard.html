@@ -1,0 +1,62 @@
+<article
+  role="button"
+  tabindex="0"
+  :aria-label="`Open referral for ${job.title} at ${job.company}`"
+  @click="openReferral"
+  @keydown.enter="openReferral"
+  @keydown.space.prevent="openReferral"
+  class="group flex flex-col justify-between rounded-3xl border border-white/10 bg-navy-800/60 p-6 shadow-xl backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-gold-400/40 hover:shadow-2xl hover:shadow-gold-500/10 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400"
+>
+  <div>
+    <div class="flex items-center justify-between gap-2 text-xs">
+      <div class="flex flex-wrap items-center gap-1.5">
+        <span class="rounded-full bg-navy-700/80 px-2.5 py-1 font-semibold tracking-wider text-gold-300 uppercase">
+          {{ job.workplaceType }}
+        </span>
+        <span class="rounded-full bg-white/10 px-2.5 py-1 font-semibold tracking-wider text-white/75 uppercase">
+          {{ job.employmentType }}
+        </span>
+      </div>
+      <span class="text-white/50 text-[11px]">{{ formattedDate }}</span>
+    </div>
+
+    <h3 class="mt-4 text-xl font-bold leading-snug tracking-tight text-white transition duration-300 group-hover:text-gold-300">
+      {{ job.title }}
+    </h3>
+
+    <div class="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-white/70">
+      <span class="font-semibold text-gold-400/90">{{ job.company }}</span>
+      <span class="text-white/30">•</span>
+      <span>{{ job.location }}</span>
+      <template v-if="job.salaryRange">
+        <span class="text-white/30">•</span>
+        <span class="font-semibold text-emerald-400">{{ job.salaryRange }}</span>
+      </template>
+    </div>
+
+    <p class="mt-2.5 text-sm leading-relaxed font-light text-white/70 line-clamp-3">
+      {{ job.description }}
+    </p>
+  </div>
+
+  <div class="mt-6 border-t border-white/10 pt-4">
+    <div class="mb-3 flex flex-wrap gap-1.5">
+      <span
+        v-for="tag in (job.tags || []).slice(0, 4)"
+        :key="tag"
+        class="rounded bg-white/5 px-2 py-0.5 text-[10px] font-medium text-white/60"
+      >
+        #{{ tag }}
+      </span>
+    </div>
+    <div class="flex items-center justify-between text-xs">
+      <span class="inline-flex items-center gap-1.5 text-white/40 text-[11px]">
+        <span class="size-1.5 rounded-full bg-emerald-400"></span>
+        Direct Referral
+      </span>
+      <span class="font-semibold text-gold-400 transition group-hover:text-gold-300">
+        Apply →
+      </span>
+    </div>
+  </div>
+</article>
